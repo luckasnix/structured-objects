@@ -2,7 +2,6 @@
   "name": "object-graph",
   "private": true,
   "version": "0.1.0",
-  "type": "module",
   "main": "dist/main.js",
   "module": "dist/main.js",
   "types": "dist/main.d.ts",
@@ -19,10 +18,14 @@
   "scripts": {
     "dev": "vite",
     "build": "tsc && vite build",
-    "test": "vitest"
+    "test": "vitest",
+    "prepare": "husky install"
   },
   "devDependencies": {
+    "@commitlint/cli": "18.4.4",
+    "@commitlint/config-conventional": "18.4.4",
     "@types/node": "20.11.0",
+    "husky": "8.0.3",
     "typescript": "5.2.2",
     "vite": "5.0.8",
     "vite-plugin-dts": "3.7.0",
