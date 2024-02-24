@@ -2,6 +2,7 @@
   "name": "object-graph",
   "private": true,
   "version": "0.1.0",
+  "type": "module",
   "main": "dist/main.js",
   "module": "dist/main.js",
   "types": "dist/main.d.ts",
@@ -16,7 +17,6 @@
   ],
   "license": "MIT",
   "scripts": {
-    "dev": "vite",
     "build": "tsc && vite build",
     "test": "vitest",
     "prepare": "husky install"
