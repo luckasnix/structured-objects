@@ -16,15 +16,6 @@ describe('length', () => {
   });
 });
 
-describe('copy()', () => {
-  test('get a copy of the original object graph', () => {
-    const shirtsObjectGraph = new ObjectGraph<Shirt>(shirtsMock, (shirt) => shirt.sku);
-    const copiedShirtsObjectGraph = shirtsObjectGraph.copy();
-
-    expect(shirtsObjectGraph.get('1')).toEqual(copiedShirtsObjectGraph.get('1'));
-  });
-});
-
 describe('get()', () => {
   test('throws an error when there is no node with the provided key in the object graph', () => {
     const shirtsObjectGraph = new ObjectGraph<Shirt>(shirtsMock, (shirt) => shirt.sku);
@@ -41,6 +32,26 @@ describe('get()', () => {
 
     expect(returnedNode.color).toBe(shirtsMock[0].color);
     expect(returnedNode.size).toBe(shirtsMock[0].size);
+  });
+});
+
+describe('getAll()', () => {
+  test('get all nodes of the object graph', () => {
+    const shirtsObjectGraph = new ObjectGraph<Shirt>(shirtsMock, (shirt) => shirt.sku);
+    const returnedShirtsObjectGraph = shirtsObjectGraph.getAll();
+
+    expect(shirtsMock.length).toBe(returnedShirtsObjectGraph.length);
+    expect(shirtsMock[0]).toEqual(returnedShirtsObjectGraph[0]);
+  });
+});
+
+describe('copy()', () => {
+  test('get a copy of the original object graph', () => {
+    const shirtsObjectGraph = new ObjectGraph<Shirt>(shirtsMock, (shirt) => shirt.sku);
+
+    const copiedShirtsObjectGraph = shirtsObjectGraph.copy();
+
+    expect(shirtsObjectGraph.get('1')).toEqual(copiedShirtsObjectGraph.get('1'));
   });
 });
 

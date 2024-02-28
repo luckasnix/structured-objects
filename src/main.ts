@@ -24,13 +24,6 @@ class ObjectGraph<T extends Record<string, unknown>> {
   };
 
   /**
-   * @description Returns a copy of the original object graph
-   */
-  public copy() {
-    return new ObjectGraph(Array.from(this.nodes.values()), this.keyExtractor)
-  }
-
-  /**
    * @description Returns a node of the object graph
    */
   public get(key: string) {
@@ -46,6 +39,20 @@ class ObjectGraph<T extends Record<string, unknown>> {
     }
     return node;
   };
+
+  /**
+   * @description Returns all nodes of the object graph
+   */
+  public getAll() {
+    return Array.from(this.nodes.values());
+  }
+
+  /**
+   * @description Returns a copy of the original object graph
+   */
+  public copy() {
+    return new ObjectGraph(Array.from(this.nodes.values()), this.keyExtractor)
+  }
 
   /**
    * @description Inserts a node to the object graph
