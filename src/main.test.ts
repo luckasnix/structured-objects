@@ -4,109 +4,140 @@ import ObjectGraph from './main';
 import { shirtsMock, extraShirtsMock, type Shirt } from './main.mock';
 
 describe('length', () => {
-  test('get the length of the graph', () => {
-    const shirtToAdd: Shirt = { sku: '9', color: 'orange', size: 'small' };
+  test('get the length of the object graph', () => {
+    const shirtToInsert: Shirt = { sku: '9', color: 'orange', size: 'small' };
     const shirtsObjectGraph = new ObjectGraph<Shirt>(shirtsMock, (shirt) => shirt.sku);
 
     expect(shirtsObjectGraph.length).toBe(8);
 
-    shirtsObjectGraph.setNode(shirtToAdd);
+    shirtsObjectGraph.insert(shirtToInsert);
 
     expect(shirtsObjectGraph.length).toBe(9);
   });
 });
 
-describe('setNode()', () => {
-  test('add a node to the graph', () => {
-    const shirtToAdd: Shirt = { sku: '1', color: 'red', size: 'small' };
+describe('copy()', () => {
+  test('get a copy of the original object graph', () => {
+    const shirtsObjectGraph = new ObjectGraph<Shirt>(shirtsMock, (shirt) => shirt.sku);
+    const copiedShirtsObjectGraph = shirtsObjectGraph.copy();
+
+    expect(shirtsObjectGraph.get('1')).toEqual(copiedShirtsObjectGraph.get('1'));
+  });
+});
+
+describe('get()', () => {
+  test('throws an error when there is no node with the provided key in the object graph', () => {
+    const shirtsObjectGraph = new ObjectGraph<Shirt>(shirtsMock, (shirt) => shirt.sku);
+
+    expect(() => {
+      shirtsObjectGraph.get('9');
+    }).toThrowError();
+  });
+
+  test('get a node of the object graph', () => {
+    const shirtsObjectGraph = new ObjectGraph<Shirt>(shirtsMock, (shirt) => shirt.sku);
+
+    const returnedNode = shirtsObjectGraph.get(shirtsMock[0].sku);
+
+    expect(returnedNode.color).toBe(shirtsMock[0].color);
+    expect(returnedNode.size).toBe(shirtsMock[0].size);
+  });
+});
+
+describe('insert()', () => {
+  test('throws an error when a node with the same key already exists in the object graph', () => {
+    const shirtsObjectGraph = new ObjectGraph<Shirt>(shirtsMock, (shirt) => shirt.sku);
+
+    expect(() => {
+      shirtsObjectGraph.insert(shirtsMock[0]);
+    }).toThrowError();
+  });
+
+  test('inserts a node to the object graph', () => {
     const shirtsObjectGraph = new ObjectGraph<Shirt>([], (shirt) => shirt.sku);
 
-    shirtsObjectGraph.setNode(shirtToAdd);
+    shirtsObjectGraph.insert(shirtsMock[0]);
 
-    expect(shirtsObjectGraph.getNode(shirtToAdd.sku)).toEqual(shirtToAdd);
-  });
-
-  test('update a node of the graph', () => {
-    const shirtsObjectGraph = new ObjectGraph<Shirt>(shirtsMock, (shirt) => shirt.sku);
-
-    expect(shirtsObjectGraph.getNode('3').color).toBe('yellow');
-    expect(shirtsObjectGraph.getNode('3').size).toBe('small');
-
-    shirtsObjectGraph.setNode({ sku: '3', color: 'red', size: 'large' });
-
-    expect(shirtsObjectGraph.getNode('3').color).toBe('red');
-    expect(shirtsObjectGraph.getNode('3').size).toBe('large');
+    expect(shirtsObjectGraph.get('1')).toEqual(shirtsMock[0]);
   });
 });
 
-describe('setNodes()', () => {
-  test('add many nodes to the graph', () => {
+describe('toInserted()', () => {
+  test('get a copy of the original object graph with a received node inserted', () => {
+    const shirtsObjectGraph = new ObjectGraph<Shirt>([], (shirt) => shirt.sku);
+
+    const copiedShirtsObjectGraph = shirtsObjectGraph.toInserted(shirtsMock[0]);
+
+    shirtsObjectGraph.insert(shirtsMock[0]);
+
+    expect(shirtsObjectGraph.get('1')).toEqual(copiedShirtsObjectGraph.get('1'));
+  });
+});
+
+describe('replace()', () => {
+  test('throws an error when there is no node with the same key in the object graph', () => {
     const shirtsObjectGraph = new ObjectGraph<Shirt>(shirtsMock, (shirt) => shirt.sku);
+
+    expect(() => {
+      shirtsObjectGraph.replace(extraShirtsMock[0]);
+    }).toThrowError();
+  });
+
+  test('replaces a node in the object graph', () => {
+    const shirtToReplace: Shirt = { sku: '1', color: 'red', size: 'large' };
+    const shirtsObjectGraph = new ObjectGraph<Shirt>(shirtsMock, (shirt) => shirt.sku);
+
+    expect(shirtsObjectGraph.get('1').size).toBe('small');
+
+    shirtsObjectGraph.replace(shirtToReplace);
+
+    expect(shirtsObjectGraph.get('1').size).toBe('large');
+  });
+});
+
+describe('toReplaced()', () => {
+  test('get a copy of the original object graph with a received node replaced', () => {
+    const shirtToReplace: Shirt = { sku: '1', color: 'red', size: 'large' };
+    const shirtsObjectGraph = new ObjectGraph<Shirt>(shirtsMock, (shirt) => shirt.sku);
+
+    const copiedShirtsObjectGraph = shirtsObjectGraph.toReplaced(shirtToReplace);
+
+    expect(shirtsObjectGraph.get('1').size).toBe('small');
+    expect(copiedShirtsObjectGraph.get('1').size).toBe('large');
+  });
+});
+
+describe('remove()', () => {
+  test('throws an error when there is no node with the provided key in the object graph', () => {
+    const shirtsObjectGraph = new ObjectGraph<Shirt>(shirtsMock, (shirt) => shirt.sku);
+
+    expect(() => {
+      shirtsObjectGraph.remove('9');
+    }).toThrowError();
+  });
+
+  test('removes a node to the object graph', () => {
+    const shirtsObjectGraph = new ObjectGraph<Shirt>(shirtsMock, (shirt) => shirt.sku);
+
+    expect(() => {
+      shirtsObjectGraph.get('1');
+    }).not.toThrowError();
+
+    shirtsObjectGraph.remove('1');
+
+    expect(() => {
+      shirtsObjectGraph.get('1');
+    }).toThrowError();
+  });
+});
+
+describe('toRemoved()', () => {
+  test('get a copy of the original object graph with a received node removed', () => {
+    const shirtsObjectGraph = new ObjectGraph<Shirt>(shirtsMock, (shirt) => shirt.sku);
+
+    const copiedShirtsObjectGraph = shirtsObjectGraph.toRemoved('1');
 
     expect(shirtsObjectGraph.length).toBe(8);
-
-    shirtsObjectGraph.setNodes(extraShirtsMock);
-
-    expect(shirtsObjectGraph.length).toBe(16);
-  });
-});
-
-describe('deleteNode()', () => {
-  test('delete a node from the graph', () => {
-    const shirtsObjectGraph = new ObjectGraph<Shirt>(shirtsMock, (shirt) => shirt.sku);
-
-    expect(() => shirtsObjectGraph.getNode(shirtsMock[0].sku)).not.toThrowError();
-
-    shirtsObjectGraph.deleteNode(shirtsMock[0].sku);
-
-    expect(() => shirtsObjectGraph.getNode(shirtsMock[0].sku)).toThrowError();
-  });
-
-  test('delete a non-existent node from the graph and throw an error', () => {
-    const shirtsObjectGraph = new ObjectGraph<Shirt>(shirtsMock, (shirt) => shirt.sku);
-
-    expect(() => shirtsObjectGraph.deleteNode(shirtsMock[shirtsMock.length].sku)).toThrowError();
-  });
-});
-
-describe('getNode()', () => {
-  test('get a node of the graph', () => {
-    const firstShirt = shirtsMock[0];
-    const shirtsObjectGraph = new ObjectGraph<Shirt>(shirtsMock, (shirt) => shirt.sku);
-
-    const nodeObtained = shirtsObjectGraph.getNode(firstShirt.sku);
-
-    expect(nodeObtained.color).toBe(firstShirt.color);
-    expect(nodeObtained.size).toBe(firstShirt.size);
-  });
-});
-
-describe('getValuesFromProperty()', () => {
-  test('get values from properties of nodes of the graph', () => {
-    const shirtsObjectGraph = new ObjectGraph<Shirt>(shirtsMock, (shirt) => shirt.sku);
-
-    const valuesFromColorProperty = shirtsObjectGraph.getValuesFromProperty('color');
-    const valuesFromSizeProperty = shirtsObjectGraph.getValuesFromProperty('size');
-
-    expect(valuesFromColorProperty).toContain('red');
-    expect(valuesFromColorProperty).toContain('yellow');
-    expect(valuesFromColorProperty).toContain('green');
-    expect(valuesFromColorProperty).toContain('blue');
-    expect(valuesFromSizeProperty).toContain('small');
-    expect(valuesFromSizeProperty).toContain('medium');
-    expect(valuesFromSizeProperty).toContain('large');
-  });
-});
-
-describe('getMatchedNodes()', () => {
-  test('get matching nodes in the graph', () => {
-    const shirtsObjectGraph = new ObjectGraph<Shirt>(shirtsMock, (shirt) => shirt.sku);
-
-    const matchedShirts = shirtsObjectGraph.getMatchedNodes({
-      color: ['red', 'blue'],
-      size: ['small', 'medium'],
-    });
-
-    expect(matchedShirts.length).toBe(4);
+    expect(copiedShirtsObjectGraph.length).toBe(7);
   });
 });
