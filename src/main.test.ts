@@ -1,6 +1,6 @@
 import { expect, describe, test } from 'vitest';
 
-import ObjectGraph from './main';
+import { ObjectGraph } from './main';
 import { shirtsMock, extraShirtsMock, type Shirt } from './main.mock';
 
 describe('length', () => {

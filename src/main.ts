@@ -1,4 +1,4 @@
-class ObjectGraph<T extends Record<string, unknown>> {
+export class ObjectGraph<T extends Record<string, unknown>> {
   private nodes: Map<string, T>;
   private keyExtractor: (node: T) => string;
 
@@ -125,5 +125,3 @@ class ObjectGraph<T extends Record<string, unknown>> {
     return copiedObjectGraph;
   };
 };
-
-export default ObjectGraph;
