@@ -45,14 +45,14 @@ export class ObjectGraph<NodeValue extends Record<string, unknown>> {
    */
   public getAll() {
     return Array.from(this.nodes.values());
-  }
+  };
 
   /**
    * @description Returns a copy of the original object graph
    */
   public copy() {
     return new ObjectGraph(Array.from(this.nodes.values()), this.keyExtractor)
-  }
+  };
 
   /**
    * @description Adds a node to the object graph
