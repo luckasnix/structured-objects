@@ -4,7 +4,7 @@
 
 ### Constructor
 
-- `nodes`: Array of objects to be converted in nodes of the graph
+- `nodeValues`: Array of objects to be converted in nodes of the graph
 - `keyExtractor`: Function that generates a key for each node
 
 ### Properties

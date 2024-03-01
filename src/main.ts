@@ -1,18 +1,18 @@
-export class ObjectGraph<T extends Record<string, unknown>> {
-  private nodes: Map<string, T>;
-  private keyExtractor: (node: T) => string;
+export class ObjectGraph<NodeValue extends Record<string, unknown>> {
+  private nodes: Map<string, NodeValue>;
+  private keyExtractor: (nodeValue: NodeValue) => string;
 
-  constructor (nodes: Array<T>, keyExtractor: (node: T) => string) {
-    if (!nodes) {
-      throw new Error('Provide a value for the "nodes" parameter');
+  constructor (nodeValues: Array<NodeValue>, keyExtractor: (nodeValue: NodeValue) => string) {
+    if (!nodeValues) {
+      throw new Error('Provide a value for the "nodeValues" parameter');
     }
     if (!keyExtractor) {
       throw new Error('Provide a value for the "keyExtractor" parameter');
     }
     this.nodes = new Map();
     this.keyExtractor = keyExtractor;
-    if (nodes.length > 0) {
-      nodes.forEach(node => this.nodes.set(this.keyExtractor(node), node));
+    if (nodeValues.length > 0) {
+      nodeValues.forEach(nodeValue => this.nodes.set(this.keyExtractor(nodeValue), nodeValue));
     }
   };
 
@@ -57,46 +57,46 @@ export class ObjectGraph<T extends Record<string, unknown>> {
   /**
    * @description Inserts a node to the object graph
    */
-  public insert(node: T) {
-    if (!node) {
-      throw new Error('Provide a value for the "node" parameter');
+  public insert(nodeValue: NodeValue) {
+    if (!nodeValue) {
+      throw new Error('Provide a value for the "nodeValue" parameter');
     }
-    if (this.nodes.get(this.keyExtractor(node))) {
+    const nodeKey = this.keyExtractor(nodeValue);
+    if (this.nodes.get(nodeKey)) {
       throw new Error('A node with the same key already exists in the object graph');
     }
-    const key = this.keyExtractor(node);
-    this.nodes.set(key, node);
+    this.nodes.set(nodeKey, nodeValue);
   };
 
   /**
    * @description Returns a copy of the original object graph with a received node inserted
    */
-  public toInserted(node: T) {
+  public toInserted(nodeValue: NodeValue) {
     const copiedObjectGraph = this.copy();
-    copiedObjectGraph.insert(node);
+    copiedObjectGraph.insert(nodeValue);
     return copiedObjectGraph;
   };
 
   /**
    * @description Replaces a node in the object graph
    */
-  public replace(node: T) {
-    if (!node) {
-      throw new Error('Provide a value for the "node" parameter');
+  public replace(nodeValue: NodeValue) {
+    if (!nodeValue) {
+      throw new Error('Provide a value for the "nodeValue" parameter');
     }
-    if (!this.nodes.get(this.keyExtractor(node))) {
+    const nodeKey = this.keyExtractor(nodeValue);
+    if (!this.nodes.get(nodeKey)) {
       throw new Error('A node with the provided key does not exist in the object graph');
     }
-    const key = this.keyExtractor(node);
-    this.nodes.set(key, node);
+    this.nodes.set(nodeKey, nodeValue);
   };
 
   /**
    * @description Returns a copy of the original object graph with a received node replaced
    */
-  public toReplaced(node: T) {
+  public toReplaced(nodeValue: NodeValue) {
     const copiedObjectGraph = this.copy();
-    copiedObjectGraph.replace(node);
+    copiedObjectGraph.replace(nodeValue);
     return copiedObjectGraph;
   };
 
