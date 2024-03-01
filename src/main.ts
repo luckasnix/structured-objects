@@ -124,4 +124,19 @@ export class ObjectGraph<T extends Record<string, unknown>> {
     copiedObjectGraph.remove(key);
     return copiedObjectGraph;
   };
+
+  /**
+   * @description Returns all the values of the provided property
+   */
+  public valuesOf(property: string) {
+    if (!property) {
+      throw new Error('Provide a value for the "property" parameter');
+    }
+    if (typeof property !== 'string') {
+      throw new TypeError('The parameter "property" must be a string');
+    }
+    const propertyValues = new Set();
+    this.nodes.forEach(node => propertyValues.add(node[property]));
+    return Array.from(propertyValues);
+  };
 };

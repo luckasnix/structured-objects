@@ -152,3 +152,15 @@ describe('toRemoved()', () => {
     expect(copiedShirtsObjectGraph.length).toBe(7);
   });
 });
+
+describe('valuesOf()', () => {
+  test('get all the values of the provided property', () => {
+    const shirtsObjectGraph = new ObjectGraph<Shirt>(shirtsMock, (shirt) => shirt.sku);
+
+    const sizePropertyValues = shirtsObjectGraph.valuesOf('size');
+
+    expect(sizePropertyValues).toContain('small');
+    expect(sizePropertyValues).toContain('medium');
+    expect(sizePropertyValues).toContain('large');
+  });
+});
