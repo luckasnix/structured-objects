@@ -5,12 +5,12 @@ import { shirtsMock, extraShirtsMock, type Shirt } from './main.mock';
 
 describe('length', () => {
   test('get the length of the object graph', () => {
-    const shirtToInsert: Shirt = { sku: '9', color: 'orange', size: 'small' };
+    const shirtToAdd: Shirt = { sku: '9', color: 'orange', size: 'small' };
     const shirtsObjectGraph = new ObjectGraph<Shirt>(shirtsMock, (shirt) => shirt.sku);
 
     expect(shirtsObjectGraph.length).toBe(8);
 
-    shirtsObjectGraph.insert(shirtToInsert);
+    shirtsObjectGraph.add(shirtToAdd);
 
     expect(shirtsObjectGraph.length).toBe(9);
   });
@@ -55,63 +55,63 @@ describe('copy()', () => {
   });
 });
 
-describe('insert()', () => {
+describe('add()', () => {
   test('throws an error when a node with the same key already exists in the object graph', () => {
     const shirtsObjectGraph = new ObjectGraph<Shirt>(shirtsMock, (shirt) => shirt.sku);
 
     expect(() => {
-      shirtsObjectGraph.insert(shirtsMock[0]);
+      shirtsObjectGraph.add(shirtsMock[0]);
     }).toThrowError();
   });
 
-  test('inserts a node to the object graph', () => {
+  test('adds a node to the object graph', () => {
     const shirtsObjectGraph = new ObjectGraph<Shirt>([], (shirt) => shirt.sku);
 
-    shirtsObjectGraph.insert(shirtsMock[0]);
+    shirtsObjectGraph.add(shirtsMock[0]);
 
     expect(shirtsObjectGraph.get('1')).toEqual(shirtsMock[0]);
   });
 });
 
-describe('toInserted()', () => {
-  test('get a copy of the original object graph with a received node inserted', () => {
+describe('toAdded()', () => {
+  test('get a copy of the original object graph with a received node added', () => {
     const shirtsObjectGraph = new ObjectGraph<Shirt>([], (shirt) => shirt.sku);
 
-    const copiedShirtsObjectGraph = shirtsObjectGraph.toInserted(shirtsMock[0]);
+    const copiedShirtsObjectGraph = shirtsObjectGraph.toAdded(shirtsMock[0]);
 
-    shirtsObjectGraph.insert(shirtsMock[0]);
+    shirtsObjectGraph.add(shirtsMock[0]);
 
     expect(shirtsObjectGraph.get('1')).toEqual(copiedShirtsObjectGraph.get('1'));
   });
 });
 
-describe('replace()', () => {
+describe('update()', () => {
   test('throws an error when there is no node with the same key in the object graph', () => {
     const shirtsObjectGraph = new ObjectGraph<Shirt>(shirtsMock, (shirt) => shirt.sku);
 
     expect(() => {
-      shirtsObjectGraph.replace(extraShirtsMock[0]);
+      shirtsObjectGraph.update(extraShirtsMock[0]);
     }).toThrowError();
   });
 
-  test('replaces a node in the object graph', () => {
-    const shirtToReplace: Shirt = { sku: '1', color: 'red', size: 'large' };
+  test('updates a node in the object graph', () => {
+    const shirtToUpdate: Shirt = { sku: '1', color: 'red', size: 'large' };
     const shirtsObjectGraph = new ObjectGraph<Shirt>(shirtsMock, (shirt) => shirt.sku);
 
     expect(shirtsObjectGraph.get('1').size).toBe('small');
 
-    shirtsObjectGraph.replace(shirtToReplace);
+    shirtsObjectGraph.update(shirtToUpdate);
 
     expect(shirtsObjectGraph.get('1').size).toBe('large');
   });
 });
 
-describe('toReplaced()', () => {
-  test('get a copy of the original object graph with a received node replaced', () => {
-    const shirtToReplace: Shirt = { sku: '1', color: 'red', size: 'large' };
+describe('toUpdated()', () => {
+  test('get a copy of the original object graph with a received node updated', () => {
+    const shirtToUpdate: Shirt = { sku: '1', color: 'red', size: 'large' };
     const shirtsObjectGraph = new ObjectGraph<Shirt>(shirtsMock, (shirt) => shirt.sku);
 
-    const copiedShirtsObjectGraph = shirtsObjectGraph.toReplaced(shirtToReplace);
+    const copiedShirtsObjectGraph = shirtsObjectGraph.toUpdated(shirtToUpdate);
 
     expect(shirtsObjectGraph.get('1').size).toBe('small');
     expect(copiedShirtsObjectGraph.get('1').size).toBe('large');

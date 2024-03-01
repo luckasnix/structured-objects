@@ -55,9 +55,9 @@ export class ObjectGraph<NodeValue extends Record<string, unknown>> {
   }
 
   /**
-   * @description Inserts a node to the object graph
+   * @description Adds a node to the object graph
    */
-  public insert(nodeValue: NodeValue) {
+  public add(nodeValue: NodeValue) {
     if (!nodeValue) {
       throw new Error('Provide a value for the "nodeValue" parameter');
     }
@@ -69,18 +69,18 @@ export class ObjectGraph<NodeValue extends Record<string, unknown>> {
   };
 
   /**
-   * @description Returns a copy of the original object graph with a received node inserted
+   * @description Returns a copy of the original object graph with a received node added
    */
-  public toInserted(nodeValue: NodeValue) {
+  public toAdded(nodeValue: NodeValue) {
     const copiedObjectGraph = this.copy();
-    copiedObjectGraph.insert(nodeValue);
+    copiedObjectGraph.add(nodeValue);
     return copiedObjectGraph;
   };
 
   /**
-   * @description Replaces a node in the object graph
+   * @description Updates a node in the object graph
    */
-  public replace(nodeValue: NodeValue) {
+  public update(nodeValue: NodeValue) {
     if (!nodeValue) {
       throw new Error('Provide a value for the "nodeValue" parameter');
     }
@@ -92,11 +92,11 @@ export class ObjectGraph<NodeValue extends Record<string, unknown>> {
   };
 
   /**
-   * @description Returns a copy of the original object graph with a received node replaced
+   * @description Returns a copy of the original object graph with a received node updated
    */
-  public toReplaced(nodeValue: NodeValue) {
+  public toUpdated(nodeValue: NodeValue) {
     const copiedObjectGraph = this.copy();
-    copiedObjectGraph.replace(nodeValue);
+    copiedObjectGraph.update(nodeValue);
     return copiedObjectGraph;
   };
 
