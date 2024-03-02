@@ -26,14 +26,14 @@ export class ObjectGraph<NodeValue extends Record<string, unknown>> {
   /**
    * @description Returns a node of the object graph
    */
-  public get(key: string) {
-    if (!key) {
-      throw new Error('Provide a value for the "key" parameter');
+  public get(nodeKey: string) {
+    if (!nodeKey) {
+      throw new Error('Provide a value for the "nodeKey" parameter');
     }
-    if (typeof key !== 'string') {
-      throw new TypeError('The parameter "key" must be a string');
+    if (typeof nodeKey !== 'string') {
+      throw new TypeError('The parameter "nodeKey" must be a string');
     }
-    const node = this.nodes.get(key);
+    const node = this.nodes.get(nodeKey);
     if (!node) {
       throw new Error('A node with this key does not exist in the object graph');
     }
@@ -103,25 +103,25 @@ export class ObjectGraph<NodeValue extends Record<string, unknown>> {
   /**
    * @description Removes a node to the object graph
    */
-  public remove(key: string) {
-    if (!key) {
-      throw new Error('Provide a value for the "key" parameter');
+  public remove(nodeKey: string) {
+    if (!nodeKey) {
+      throw new Error('Provide a value for the "nodeKey" parameter');
     }
-    if (typeof key !== 'string') {
-      throw new TypeError('The parameter "key" must be a string');
+    if (typeof nodeKey !== 'string') {
+      throw new TypeError('The parameter "nodeKey" must be a string');
     }
-    if (!this.nodes.get(key)) {
+    if (!this.nodes.get(nodeKey)) {
       throw new Error('A node with this key does not exist in this object graph');
     }
-    this.nodes.delete(key);
+    this.nodes.delete(nodeKey);
   };
 
   /**
    * @description Returns a copy of the original object graph with a received node removed
    */
-  public toRemoved(key: string) {
+  public toRemoved(nodeKey: string) {
     const copiedObjectGraph = this.copy();
-    copiedObjectGraph.remove(key);
+    copiedObjectGraph.remove(nodeKey);
     return copiedObjectGraph;
   };
 
