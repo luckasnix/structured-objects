@@ -28,4 +28,5 @@
 - `removeMany`: Returns a copy of the original object graph with a received node removed
 - `toRemoved`: Coming soon...
 - `toManyRemoved`: Coming soon...
-- `valuesOf`: Returns all the values of the provided property
+- `valuesOf`: Returns all values of the provided property
+- `match`: Returns all nodes that match with the provided matcher

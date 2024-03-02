@@ -126,7 +126,7 @@ export class ObjectGraph<NodeValue extends Record<string, unknown>> {
   };
 
   /**
-   * @description Returns all the values of the provided property
+   * @description Returns all values of the provided property
    */
   public valuesOf(property: string) {
     if (!property) {
@@ -138,5 +138,25 @@ export class ObjectGraph<NodeValue extends Record<string, unknown>> {
     const propertyValues = new Set();
     this.nodes.forEach(node => propertyValues.add(node[property]));
     return Array.from(propertyValues);
+  };
+
+  /**
+   * @description Returns all nodes that match with the provided matcher
+   */
+  public match(matcher: Partial<Record<keyof NodeValue, Array<unknown>>>) {
+    if (!matcher) {
+      throw new Error('Provide a value for the "matcher" parameter');
+    }
+    const matchedNodes: Array<NodeValue> = new Array();
+    this.nodes.forEach((node) => {
+      const matcherEntries = Object.entries(matcher) as Array<[keyof NodeValue, Array<unknown>]>;
+      const hasMatched = matcherEntries.every((matcherEntry) => {
+        return matcherEntry[1].includes(node[matcherEntry[0]]);
+      });
+      if (hasMatched) {
+        matchedNodes.push(node);
+      }
+    });
+    return Array.from(matchedNodes);
   };
 };

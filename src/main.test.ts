@@ -154,7 +154,7 @@ describe('toRemoved()', () => {
 });
 
 describe('valuesOf()', () => {
-  test('get all the values of the provided property', () => {
+  test('get all values of the provided property', () => {
     const shirtsObjectGraph = new ObjectGraph<Shirt>(shirtsMock, (shirt) => shirt.sku);
 
     const sizePropertyValues = shirtsObjectGraph.valuesOf('size');
@@ -162,5 +162,19 @@ describe('valuesOf()', () => {
     expect(sizePropertyValues).toContain('small');
     expect(sizePropertyValues).toContain('medium');
     expect(sizePropertyValues).toContain('large');
+  });
+});
+
+describe('match()', () => {
+  test('get all nodes that match with the provided matcher', () => {
+    const shirtsObjectGraph = new ObjectGraph<Shirt>(shirtsMock, (shirt) => shirt.sku);
+
+    const matchedShirts = shirtsObjectGraph.match({
+      color: ['yellow', 'blue'],
+    });
+
+    matchedShirts.forEach((matchedShirt) => {
+      expect(matchedShirt.color).oneOf(['yellow', 'blue']);
+    });
   });
 });
