@@ -12,7 +12,9 @@ export class ObjectGraph<NodeValue extends Record<string, unknown>> {
     this.nodes = new Map();
     this.keyExtractor = keyExtractor;
     if (nodeValues.length > 0) {
-      nodeValues.forEach(nodeValue => this.nodes.set(this.keyExtractor(nodeValue), nodeValue));
+      nodeValues.forEach((nodeValue) => {
+        this.nodes.set(this.keyExtractor(nodeValue), nodeValue);
+      });
     }
   };
 
@@ -136,7 +138,9 @@ export class ObjectGraph<NodeValue extends Record<string, unknown>> {
       throw new TypeError('The parameter "property" must be a string');
     }
     const propertyValues = new Set();
-    this.nodes.forEach(node => propertyValues.add(node[property]));
+    this.nodes.forEach((node) => {
+      return propertyValues.add(node[property]);
+    });
     return Array.from(propertyValues);
   };
 
