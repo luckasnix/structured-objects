@@ -138,8 +138,8 @@ export class ObjectGraph<NodeValue extends Record<string, unknown>> {
       throw new TypeError('The parameter "property" must be a string');
     }
     const propertyValues = new Set();
-    this.nodes.forEach((node) => {
-      return propertyValues.add(node[property]);
+    this.nodes.forEach((nodeValue) => {
+      return propertyValues.add(nodeValue[property]);
     });
     return Array.from(propertyValues);
   };
@@ -152,13 +152,13 @@ export class ObjectGraph<NodeValue extends Record<string, unknown>> {
       throw new Error('Provide a value for the "matcher" parameter');
     }
     const matchedNodes: Array<NodeValue> = new Array();
-    this.nodes.forEach((node) => {
+    this.nodes.forEach((nodeValue) => {
       const matcherEntries = Object.entries(matcher) as Array<[keyof NodeValue, Array<unknown>]>;
       const hasMatched = matcherEntries.every((matcherEntry) => {
-        return matcherEntry[1].includes(node[matcherEntry[0]]);
+        return matcherEntry[1].includes(nodeValue[matcherEntry[0]]);
       });
       if (hasMatched) {
-        matchedNodes.push(node);
+        matchedNodes.push(nodeValue);
       }
     });
     return Array.from(matchedNodes);
