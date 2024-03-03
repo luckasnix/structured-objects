@@ -9,7 +9,7 @@ export default defineConfig({
   build: {
     lib: {
       entry: resolve(__dirname, 'src/index.ts'),
-      name: 'ObjectGraph',
+      name: 'StructuredObjects',
       formats: ['es'],
       fileName: 'index',
     },
