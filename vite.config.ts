@@ -8,16 +8,17 @@ export default defineConfig({
   },
   build: {
     lib: {
-      entry: resolve(__dirname, 'src/main.ts'),
+      entry: resolve(__dirname, 'src/index.ts'),
       name: 'ObjectGraph',
       formats: ['es'],
-      fileName: 'main',
+      fileName: 'index',
     },
   },
   plugins: [
     dts({
       include: ['src'],
       exclude: ['src/**/*.(test|mock).ts'],
+      rollupTypes: true,
     })
   ],
 });
