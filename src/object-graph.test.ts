@@ -38,6 +38,7 @@ describe('get()', () => {
 describe('getAll()', () => {
   test('get all nodes of the object graph', () => {
     const shirtsObjectGraph = new ObjectGraph<Shirt>(shirtsMock, (shirt) => shirt.sku);
+
     const returnedShirtsObjectGraph = shirtsObjectGraph.getAll();
 
     expect(shirtsMock.length).toBe(returnedShirtsObjectGraph.length);
