@@ -11,5 +11,7 @@ jobs:
         uses: actions/checkout@v4
       - name: Install dependencies
         run: npm ci
+      - name: Check types
+        run: npm run type-check
       - name: Test
         run: npm run test
