@@ -1,7 +1,7 @@
 import { expect, describe, test } from 'vitest';
 
-import { ObjectGraph } from './object-graph';
-import { shirtsMock, extraShirtsMock, type Shirt } from './object-graph.mock';
+import { ObjectGraph } from '.';
+import { shirtsMock, extraShirtsMock, type Shirt } from './index.mock';
 
 describe('length', () => {
   test('get the length of the object graph', () => {
