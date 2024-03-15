@@ -80,9 +80,14 @@ describe('toAdded()', () => {
 
     const copiedShirtsObjectGraph = shirtsObjectGraph.toAdded(shirtsMock[0]);
 
-    shirtsObjectGraph.add(shirtsMock[0]);
-
-    expect(shirtsObjectGraph.get('1')).toEqual(copiedShirtsObjectGraph.get('1'));
+    expect(shirtsObjectGraph.length).toBe(0);
+    expect(copiedShirtsObjectGraph.length).toBe(1);
+    expect(() => {
+      shirtsObjectGraph.get('1');
+    }).toThrowError();
+    expect(() => {
+      copiedShirtsObjectGraph.get('1');
+    }).not.toThrowError();
   });
 });
 
@@ -151,6 +156,12 @@ describe('toRemoved()', () => {
 
     expect(shirtsObjectGraph.length).toBe(8);
     expect(copiedShirtsObjectGraph.length).toBe(7);
+    expect(() => {
+      shirtsObjectGraph.get('1');
+    }).not.toThrowError();
+    expect(() => {
+      copiedShirtsObjectGraph.get('1');
+    }).toThrowError();
   });
 });
 
