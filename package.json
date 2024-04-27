@@ -13,7 +13,9 @@
 		"build": "tsc && vite build",
 		"test": "vitest",
 		"prepare": "husky install",
-		"type-check": "tsc -p ./tsconfig.json --noEmit"
+		"type-check": "tsc -p ./tsconfig.json --noEmit",
+		"format-check": "biome format src",
+		"lint-check": "biome lint src"
 	},
 	"devDependencies": {
 		"@biomejs/biome": "1.7.0",
