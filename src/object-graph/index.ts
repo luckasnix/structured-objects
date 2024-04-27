@@ -25,7 +25,7 @@ export class ObjectGraph<NodeValue extends Record<string, unknown>> {
 	 * @description Returns the length of the object graph.
 	 */
 	public get length() {
-		return Array.from(this.nodes.keys()).length;
+		return this.nodes.size;
 	}
 
 	/**
