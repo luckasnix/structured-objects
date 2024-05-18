@@ -38,13 +38,13 @@ export class ObjectGraph<NodeValue extends Record<string, unknown>> {
 		if (typeof nodeKey !== "string") {
 			throw new TypeError('The parameter "nodeKey" must be a string');
 		}
-		const node = this.nodes.get(nodeKey);
-		if (!node) {
+		const nodeValue = this.nodes.get(nodeKey);
+		if (!nodeValue) {
 			throw new Error(
 				"A node with this key does not exist in the object graph",
 			);
 		}
-		return node;
+		return nodeValue;
 	}
 
 	/**
