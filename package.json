@@ -1,31 +1,31 @@
 {
-	"name": "structured-objects",
-	"private": true,
-	"version": "0.1.0",
-	"type": "module",
-	"main": "dist/index.js",
-	"module": "dist/index.js",
-	"types": "dist/index.d.ts",
-	"files": ["dist"],
-	"keywords": ["javascript", "typescript", "data structures", "graph"],
-	"license": "MIT",
-	"scripts": {
-		"build": "tsc && vite build",
-		"test": "vitest",
-		"prepare": "husky install",
-		"type-check": "tsc -p ./tsconfig.json --noEmit",
-		"format-check": "biome format src",
-		"lint-check": "biome lint src"
-	},
-	"devDependencies": {
-		"@biomejs/biome": "1.7.0",
-		"@commitlint/cli": "18.4.4",
-		"@commitlint/config-conventional": "18.4.4",
-		"@types/node": "20.11.0",
-		"husky": "8.0.3",
-		"typescript": "5.2.2",
-		"vite": "5.0.8",
-		"vite-plugin-dts": "3.7.0",
-		"vitest": "1.1.1"
-	}
+  "name": "structured-objects",
+  "private": true,
+  "version": "0.1.0",
+  "type": "module",
+  "main": "dist/index.js",
+  "module": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "files": ["dist"],
+  "keywords": ["javascript", "typescript", "data structures", "graph"],
+  "license": "MIT",
+  "scripts": {
+    "build": "tsc && vite build",
+    "test": "vitest",
+    "prepare": "husky install",
+    "type-check": "tsc -p ./tsconfig.json --noEmit",
+    "format-check": "biome format .",
+    "lint-check": "biome lint ."
+  },
+  "devDependencies": {
+    "@biomejs/biome": "1.7.3",
+    "@commitlint/cli": "18.4.4",
+    "@commitlint/config-conventional": "18.4.4",
+    "@types/node": "20.11.0",
+    "husky": "8.0.3",
+    "typescript": "5.2.2",
+    "vite": "5.0.8",
+    "vite-plugin-dts": "3.7.0",
+    "vitest": "1.1.1"
+  }
 }
