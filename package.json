@@ -19,7 +19,7 @@
     "type-check": "tsc -p ./tsconfig.json --noEmit",
     "format-check": "biome format .",
     "lint-check": "biome lint .",
-    "prepare": "husky install"
+    "prepare": "husky"
   },
   "devDependencies": {
     "@biomejs/biome": "1.7.3",
