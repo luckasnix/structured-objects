@@ -1,7 +1,24 @@
+export const colors = [
+  "red",
+  "yellow",
+  "green",
+  "blue",
+  "orange",
+  "purple",
+  "white",
+  "black",
+] as const;
+
+export const sizes = ["small", "medium", "large"] as const;
+
+export type Color = (typeof colors)[number];
+
+export type Size = (typeof sizes)[number];
+
 export type Shirt = {
   sku: string;
-  color: string;
-  size: "small" | "medium" | "large";
+  color: Color;
+  size: Size;
 };
 
 export const shirtsMock: Array<Shirt> = [

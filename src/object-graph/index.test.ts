@@ -1,7 +1,7 @@
 import { expect, describe, test, vi } from "vitest";
 
 import { ObjectGraph } from ".";
-import { shirtsMock, extraShirtsMock, type Shirt } from "./index.mock";
+import { shirtsMock, extraShirtsMock, type Shirt, type Color, type Size } from "./index.mock";
 
 describe("length", () => {
   test("get the length of the object graph", () => {
@@ -200,14 +200,19 @@ describe("valuesOf()", () => {
 
 describe("match()", () => {
   test("get all nodes that match with the provided matcher", () => {
+    const colorsToMatch: Color[] = ["red", "blue"];
+    const sizesToMatch: Size[] = ["small", "medium"];
     const shirtsObjectGraph = new ObjectGraph<Shirt>(shirtsMock, (shirt) => shirt.sku);
 
     const matchedShirts = shirtsObjectGraph.match({
-      color: ["yellow", "blue"],
+      color: colorsToMatch,
+      size: sizesToMatch,
     });
 
+    expect(matchedShirts).toHaveLength(4);
     for (const matchedShirt of matchedShirts) {
-      expect(matchedShirt.color).oneOf(["yellow", "blue"]);
+      expect(matchedShirt.color).oneOf(colorsToMatch);
+      expect(matchedShirt.size).oneOf(sizesToMatch);
     }
   });
 });
