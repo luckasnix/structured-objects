@@ -37,7 +37,7 @@ export class ObjectGraph<NodeValue extends Record<string, unknown>> {
     }
     const nodeValue = this.nodes.get(nodeKey);
     if (!nodeValue) {
-      throw new Error("A node with this key does not exist in the object graph");
+      console.error("A node with this key does not exist in the object graph");
     }
     return nodeValue;
   }
@@ -65,7 +65,7 @@ export class ObjectGraph<NodeValue extends Record<string, unknown>> {
     }
     const nodeKey = this.keyExtractor(nodeValue);
     if (this.nodes.get(nodeKey)) {
-      throw new Error("A node with the same key already exists in the object graph");
+      console.error("A node with the same key already exists in the object graph");
     }
     this.nodes.set(nodeKey, nodeValue);
   }
@@ -88,7 +88,7 @@ export class ObjectGraph<NodeValue extends Record<string, unknown>> {
     }
     const nodeKey = this.keyExtractor(nodeValue);
     if (!this.nodes.get(nodeKey)) {
-      throw new Error("A node with the provided key does not exist in the object graph");
+      console.error("A node with the provided key does not exist in the object graph");
     }
     this.nodes.set(nodeKey, nodeValue);
   }
@@ -103,7 +103,7 @@ export class ObjectGraph<NodeValue extends Record<string, unknown>> {
   }
 
   /**
-   * @description Removes a node to the object graph.
+   * @description Removes a node from the object graph.
    */
   public remove(nodeKey: string) {
     if (!nodeKey) {
@@ -113,7 +113,7 @@ export class ObjectGraph<NodeValue extends Record<string, unknown>> {
       throw new TypeError('The parameter "nodeKey" must be a string');
     }
     if (!this.nodes.get(nodeKey)) {
-      throw new Error("A node with this key does not exist in this object graph");
+      console.error("A node with this key does not exist in this object graph");
     }
     this.nodes.delete(nodeKey);
   }

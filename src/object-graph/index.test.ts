@@ -1,4 +1,4 @@
-import { expect, describe, test } from "vitest";
+import { expect, describe, test, vi } from "vitest";
 
 import { ObjectGraph } from ".";
 import { shirtsMock, extraShirtsMock, type Shirt } from "./index.mock";
@@ -17,12 +17,14 @@ describe("length", () => {
 });
 
 describe("get()", () => {
-  test("throws an error when there is no node with the provided key in the object graph", () => {
+  test("logs an error when there is no node with the provided key in the object graph", () => {
+    const consoleErrorSpy = vi.spyOn(console, "error");
     const shirtsObjectGraph = new ObjectGraph<Shirt>(shirtsMock, (shirt) => shirt.sku);
 
-    expect(() => {
-      shirtsObjectGraph.get("9");
-    }).toThrowError();
+    const returnedNode = shirtsObjectGraph.get("9");
+
+    expect(consoleErrorSpy).toHaveBeenCalled();
+    expect(returnedNode).toBeUndefined();
   });
 
   test("get a node of the object graph", () => {
@@ -30,8 +32,8 @@ describe("get()", () => {
 
     const returnedNode = shirtsObjectGraph.get(shirtsMock[0].sku);
 
-    expect(returnedNode.color).toBe(shirtsMock[0].color);
-    expect(returnedNode.size).toBe(shirtsMock[0].size);
+    expect(returnedNode?.color).toBe(shirtsMock[0].color);
+    expect(returnedNode?.size).toBe(shirtsMock[0].size);
   });
 });
 
@@ -57,12 +59,13 @@ describe("copy()", () => {
 });
 
 describe("add()", () => {
-  test("throws an error when a node with the same key already exists in the object graph", () => {
+  test("logs an error when a node with the same key already exists in the object graph", () => {
+    const consoleErrorSpy = vi.spyOn(console, "error");
     const shirtsObjectGraph = new ObjectGraph<Shirt>(shirtsMock, (shirt) => shirt.sku);
 
-    expect(() => {
-      shirtsObjectGraph.add(shirtsMock[0]);
-    }).toThrowError();
+    shirtsObjectGraph.add(shirtsMock[0]);
+
+    expect(consoleErrorSpy).toHaveBeenCalled();
   });
 
   test("adds a node to the object graph", () => {
@@ -76,39 +79,45 @@ describe("add()", () => {
 
 describe("toAdded()", () => {
   test("get a copy of the original object graph with a received node added", () => {
+    const consoleErrorSpy = vi.spyOn(console, "error");
     const shirtsObjectGraph = new ObjectGraph<Shirt>([], (shirt) => shirt.sku);
 
     const copiedShirtsObjectGraph = shirtsObjectGraph.toAdded(shirtsMock[0]);
 
     expect(shirtsObjectGraph.length).toBe(0);
     expect(copiedShirtsObjectGraph.length).toBe(1);
-    expect(() => {
-      shirtsObjectGraph.get("1");
-    }).toThrowError();
-    expect(() => {
-      copiedShirtsObjectGraph.get("1");
-    }).not.toThrowError();
+
+    const returnedNodeFromCopy = copiedShirtsObjectGraph.get("1");
+
+    expect(consoleErrorSpy).not.toHaveBeenCalled();
+    expect(returnedNodeFromCopy).toBeDefined();
+
+    const returnedNodeFromOriginal = shirtsObjectGraph.get("1");
+
+    expect(consoleErrorSpy).toHaveBeenCalled();
+    expect(returnedNodeFromOriginal).toBeUndefined();
   });
 });
 
 describe("update()", () => {
-  test("throws an error when there is no node with the same key in the object graph", () => {
+  test("logs an error when there is no node with the same key in the object graph", () => {
+    const consoleErrorSpy = vi.spyOn(console, "error");
     const shirtsObjectGraph = new ObjectGraph<Shirt>(shirtsMock, (shirt) => shirt.sku);
 
-    expect(() => {
-      shirtsObjectGraph.update(extraShirtsMock[0]);
-    }).toThrowError();
+    shirtsObjectGraph.update(extraShirtsMock[0]);
+
+    expect(consoleErrorSpy).toHaveBeenCalled();
   });
 
   test("updates a node in the object graph", () => {
     const shirtToUpdate: Shirt = { sku: "1", color: "red", size: "large" };
     const shirtsObjectGraph = new ObjectGraph<Shirt>(shirtsMock, (shirt) => shirt.sku);
 
-    expect(shirtsObjectGraph.get("1").size).toBe("small");
+    expect(shirtsObjectGraph.get("1")?.size).toBe("small");
 
     shirtsObjectGraph.update(shirtToUpdate);
 
-    expect(shirtsObjectGraph.get("1").size).toBe("large");
+    expect(shirtsObjectGraph.get("1")?.size).toBe("large");
   });
 });
 
@@ -119,49 +128,61 @@ describe("toUpdated()", () => {
 
     const copiedShirtsObjectGraph = shirtsObjectGraph.toUpdated(shirtToUpdate);
 
-    expect(shirtsObjectGraph.get("1").size).toBe("small");
-    expect(copiedShirtsObjectGraph.get("1").size).toBe("large");
+    expect(shirtsObjectGraph.get("1")?.size).toBe("small");
+    expect(copiedShirtsObjectGraph.get("1")?.size).toBe("large");
   });
 });
 
 describe("remove()", () => {
-  test("throws an error when there is no node with the provided key in the object graph", () => {
+  test("logs an error when there is no node with the provided key in the object graph", () => {
+    const consoleErrorSpy = vi.spyOn(console, "error");
     const shirtsObjectGraph = new ObjectGraph<Shirt>(shirtsMock, (shirt) => shirt.sku);
 
-    expect(() => {
-      shirtsObjectGraph.remove("9");
-    }).toThrowError();
+    const returnedNode = shirtsObjectGraph.remove("9");
+
+    expect(consoleErrorSpy).toHaveBeenCalled();
+    expect(returnedNode).toBeUndefined();
   });
 
-  test("removes a node to the object graph", () => {
+  test("removes a node from the object graph", () => {
+    const consoleErrorSpy = vi.spyOn(console, "error");
     const shirtsObjectGraph = new ObjectGraph<Shirt>(shirtsMock, (shirt) => shirt.sku);
 
-    expect(() => {
-      shirtsObjectGraph.get("1");
-    }).not.toThrowError();
+    const returnedNodeFromFirstAttempt = shirtsObjectGraph.get("1");
+
+    expect(consoleErrorSpy).not.toHaveBeenCalled();
+    expect(returnedNodeFromFirstAttempt).toBeDefined();
 
     shirtsObjectGraph.remove("1");
 
-    expect(() => {
-      shirtsObjectGraph.get("1");
-    }).toThrowError();
+    expect(consoleErrorSpy).not.toHaveBeenCalled();
+
+    const returnedNodeFromSecondAttempt = shirtsObjectGraph.get("1");
+
+    expect(consoleErrorSpy).toHaveBeenCalled();
+    expect(returnedNodeFromSecondAttempt).toBeUndefined();
   });
 });
 
 describe("toRemoved()", () => {
   test("get a copy of the original object graph with a received node removed", () => {
+    const consoleErrorSpy = vi.spyOn(console, "error");
     const shirtsObjectGraph = new ObjectGraph<Shirt>(shirtsMock, (shirt) => shirt.sku);
 
     const copiedShirtsObjectGraph = shirtsObjectGraph.toRemoved("1");
 
     expect(shirtsObjectGraph.length).toBe(8);
     expect(copiedShirtsObjectGraph.length).toBe(7);
-    expect(() => {
-      shirtsObjectGraph.get("1");
-    }).not.toThrowError();
-    expect(() => {
-      copiedShirtsObjectGraph.get("1");
-    }).toThrowError();
+
+    const returnedNodeFromOriginal = shirtsObjectGraph.get("1");
+
+    expect(consoleErrorSpy).not.toHaveBeenCalled();
+    expect(returnedNodeFromOriginal).toBeDefined();
+
+    const returnedNodeFromCopy = copiedShirtsObjectGraph.get("1");
+
+    expect(consoleErrorSpy).toHaveBeenCalled();
+    expect(returnedNodeFromCopy).toBeUndefined();
   });
 });
 
