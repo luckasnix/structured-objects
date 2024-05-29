@@ -24,7 +24,7 @@ Structured Objects is lightweight and powerful library for handling object in Ja
 - `toAdded`: Returns a copy of the original object graph with a received node added.
 - `update`: Updates a node in the object graph.
 - `toUpdated`: Returns a copy of the original object graph with a received node updated.
-- `remove`: Removes a node to the object graph.
+- `remove`: Removes a node from the object graph.
 - `toRemoved`: Returns a copy of the original object graph with a received node removed.
 - `valuesOf`: Returns all values of the provided property.
 - `match`: Returns all nodes that match with the provided matcher.
