@@ -130,7 +130,7 @@ export class ObjectGraph<NodeValue extends Record<string, unknown>> {
   /**
    * @description Returns all values of the provided property.
    */
-  public valuesOf(property: string) {
+  public valuesOf(property: keyof NodeValue) {
     if (!property) {
       throw new Error('Provide a value for the "property" parameter');
     }
