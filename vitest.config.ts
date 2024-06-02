@@ -1,7 +1,9 @@
 import { defineConfig } from "vitest/config";
 
-export default defineConfig({
+const vitestConfig = defineConfig({
   test: {
     watch: false,
   },
 });
+
+export default vitestConfig;
