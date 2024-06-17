@@ -4,10 +4,10 @@ export class ObjectGraph<NodeValue extends Record<string, unknown>> {
 
   constructor(nodeValues: Array<NodeValue>, keyExtractor: (nodeValue: NodeValue) => string) {
     if (!nodeValues) {
-      throw new Error('Provide a value for the "nodeValues" parameter');
+      throw new Error("Provide a value for the 'nodeValues' parameter");
     }
     if (!keyExtractor) {
-      throw new Error('Provide a value for the "keyExtractor" parameter');
+      throw new Error("Provide a value for the 'keyExtractor' parameter");
     }
     this.nodes = new Map();
     this.keyExtractor = keyExtractor;
@@ -30,10 +30,10 @@ export class ObjectGraph<NodeValue extends Record<string, unknown>> {
    */
   public get(nodeKey: string) {
     if (!nodeKey) {
-      throw new Error('Provide a value for the "nodeKey" parameter');
+      throw new Error("Provide a value for the 'nodeKey' parameter");
     }
     if (typeof nodeKey !== "string") {
-      throw new TypeError('The parameter "nodeKey" must be a string');
+      throw new TypeError("The parameter 'nodeKey' must be a string");
     }
     const nodeValue = this.nodes.get(nodeKey);
     if (!nodeValue) {
@@ -61,7 +61,7 @@ export class ObjectGraph<NodeValue extends Record<string, unknown>> {
    */
   public add(nodeValue: NodeValue) {
     if (!nodeValue) {
-      throw new Error('Provide a value for the "nodeValue" parameter');
+      throw new Error("Provide a value for the 'nodeValue' parameter");
     }
     const nodeKey = this.keyExtractor(nodeValue);
     if (this.nodes.get(nodeKey)) {
@@ -84,7 +84,7 @@ export class ObjectGraph<NodeValue extends Record<string, unknown>> {
    */
   public update(nodeValue: NodeValue) {
     if (!nodeValue) {
-      throw new Error('Provide a value for the "nodeValue" parameter');
+      throw new Error("Provide a value for the 'nodeValue' parameter");
     }
     const nodeKey = this.keyExtractor(nodeValue);
     if (!this.nodes.get(nodeKey)) {
@@ -107,10 +107,10 @@ export class ObjectGraph<NodeValue extends Record<string, unknown>> {
    */
   public remove(nodeKey: string) {
     if (!nodeKey) {
-      throw new Error('Provide a value for the "nodeKey" parameter');
+      throw new Error("Provide a value for the 'nodeKey' parameter");
     }
     if (typeof nodeKey !== "string") {
-      throw new TypeError('The parameter "nodeKey" must be a string');
+      throw new TypeError("The parameter 'nodeKey' must be a string");
     }
     if (!this.nodes.get(nodeKey)) {
       console.error("A node with this key does not exist in this object graph");
@@ -132,10 +132,10 @@ export class ObjectGraph<NodeValue extends Record<string, unknown>> {
    */
   public valuesOf(property: keyof NodeValue) {
     if (!property) {
-      throw new Error('Provide a value for the "property" parameter');
+      throw new Error("Provide a value for the 'property' parameter");
     }
     if (typeof property !== "string") {
-      throw new TypeError('The parameter "property" must be a string');
+      throw new TypeError("The parameter 'property' must be a string");
     }
     const propertyValues = new Set();
     for (const [_, nodeValue] of this.nodes) {
@@ -149,7 +149,7 @@ export class ObjectGraph<NodeValue extends Record<string, unknown>> {
    */
   public match(matcher: Partial<Record<keyof NodeValue, Array<unknown>>>) {
     if (!matcher) {
-      throw new Error('Provide a value for the "matcher" parameter');
+      throw new Error("Provide a value for the 'matcher' parameter");
     }
     const matchedNodes: Array<NodeValue> = new Array();
     for (const [_, nodeValue] of this.nodes) {
