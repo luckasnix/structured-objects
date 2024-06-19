@@ -16,9 +16,12 @@
   "scripts": {
     "build": "tsc && vite build",
     "test": "vitest",
-    "type-check": "tsc -p ./tsconfig.json --noEmit",
-    "format-check": "biome format .",
-    "lint-check": "biome lint .",
+    "test:watch": "vitest watch",
+    "type:check": "tsc -p ./tsconfig.json --noEmit",
+    "format:check": "biome format .",
+    "format:write": "biome format --write .",
+    "lint:check": "biome lint .",
+    "lint:write": "biome lint --write .",
     "prepare": "husky"
   },
   "devDependencies": {
