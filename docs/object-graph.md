@@ -1,3 +1,4 @@
+<!-- markdownlint-disable-file no-duplicate-heading -->
 # Object Graph
 
 ## Constructor
