@@ -130,32 +130,32 @@ export class ObjectGraph<NodeValue extends Record<string, unknown>> {
   /**
    * @description Returns all values of the provided property.
    */
-  public valuesOf(property: keyof NodeValue) {
-    if (!property) {
-      throw new Error("Provide a value for the 'property' parameter");
+  public valuesOf(propertyKey: keyof NodeValue) {
+    if (!propertyKey) {
+      throw new Error("Provide a value for the 'propertyKey' parameter");
     }
-    if (typeof property !== "string") {
-      throw new TypeError("The parameter 'property' must be a string");
+    if (typeof propertyKey !== "string") {
+      throw new TypeError("The parameter 'propertyKey' must be a string");
     }
     const propertyValues = new Set();
     for (const [_, nodeValue] of this.nodes) {
-      propertyValues.add(nodeValue[property]);
+      propertyValues.add(nodeValue[propertyKey]);
     }
     return Array.from(propertyValues);
   }
 
   /**
-   * @description Returns all nodes that match with the provided matcher.
+   * @description Returns all nodes that match with the provided shape.
    */
-  public match(matcher: Partial<Record<keyof NodeValue, Array<unknown>>>) {
-    if (!matcher) {
-      throw new Error("Provide a value for the 'matcher' parameter");
+  public match(shape: Partial<Record<keyof NodeValue, Array<unknown>>>) {
+    if (!shape) {
+      throw new Error("Provide a value for the 'shape' parameter");
     }
     const matchedNodes: Array<NodeValue> = new Array();
     for (const [_, nodeValue] of this.nodes) {
-      const matcherEntries = Object.entries(matcher) as Array<[keyof NodeValue, Array<unknown>]>;
-      const hasMatched = matcherEntries.every((matcherEntry) => {
-        return matcherEntry[1].includes(nodeValue[matcherEntry[0]]);
+      const shapeEntries = Object.entries(shape) as Array<[keyof NodeValue, Array<unknown>]>;
+      const hasMatched = shapeEntries.every((shapeEntry) => {
+        return shapeEntry[1].includes(nodeValue[shapeEntry[0]]);
       });
       if (hasMatched) {
         matchedNodes.push(nodeValue);
