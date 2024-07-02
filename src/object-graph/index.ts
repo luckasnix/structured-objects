@@ -2,6 +2,9 @@ export class ObjectGraph<NodeValue extends Record<string, unknown>> {
   private nodes: Map<string, NodeValue>;
   private keyExtractor: (nodeValue: NodeValue) => string;
 
+  /**
+   * @description Returns an instance of ObjectGraph.
+   */
   constructor(nodeValues: Array<NodeValue>, keyExtractor: (nodeValue: NodeValue) => string) {
     if (!nodeValues) {
       throw new Error("Provide a value for the 'nodeValues' parameter");
