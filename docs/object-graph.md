@@ -3,7 +3,7 @@
 
 ## Constructor
 
-Instantiates an object graph.
+Returns an instance of ObjectGraph.
 
 ### Parameters
 
