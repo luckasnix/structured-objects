@@ -199,7 +199,7 @@ describe("valuesOf()", () => {
 });
 
 describe("match()", () => {
-  test("get all nodes that match with the provided matcher", () => {
+  test("get all nodes that match with the provided shape", () => {
     const colorsToMatch: Color[] = ["red", "blue"];
     const sizesToMatch: Size[] = ["small", "medium"];
     const shirtsObjectGraph = new ObjectGraph<Shirt>(shirtsMock, (shirt) => shirt.sku);
