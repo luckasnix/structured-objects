@@ -7,7 +7,7 @@ jobs:
     name: Test
     strategy:
       matrix:
-        node-version: [18, 20, 22]
+        node-version: [20, 22]
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
