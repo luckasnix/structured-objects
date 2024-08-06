@@ -4,4 +4,4 @@ Structured Objects is lightweight and powerful library for handling object in Ja
 
 ## Resources
 
-- [Object Graph](./docs/object-graph.md)
+- [Object Graph](./docs/object-graph.doc.md)
