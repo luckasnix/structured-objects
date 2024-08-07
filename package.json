@@ -9,8 +9,15 @@
   "main": "dist/index.js",
   "module": "dist/index.js",
   "types": "dist/index.d.ts",
-  "files": ["dist"],
-  "keywords": ["javascript", "typescript", "data structures", "graph"],
+  "files": [
+    "dist"
+  ],
+  "keywords": [
+    "javascript",
+    "typescript",
+    "data structures",
+    "graph"
+  ],
   "license": "MIT",
   "scripts": {
     "build": "tsc && vite build",
