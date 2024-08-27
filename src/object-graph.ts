@@ -4,6 +4,7 @@ export class ObjectGraph<NodeValue extends Record<string, unknown>> {
 
   /**
    * @description Returns an instance of ObjectGraph.
+   * @since 0.1.0
    */
   constructor(nodeValues: Array<NodeValue>, keyExtractor: (nodeValue: NodeValue) => string) {
     if (!nodeValues) {
@@ -23,6 +24,7 @@ export class ObjectGraph<NodeValue extends Record<string, unknown>> {
 
   /**
    * @description Returns the length of the object graph.
+   * @since 0.1.0
    */
   public get length() {
     return this.nodes.size;
@@ -30,6 +32,7 @@ export class ObjectGraph<NodeValue extends Record<string, unknown>> {
 
   /**
    * @description Returns a node of the object graph.
+   * @since 0.1.0
    */
   public get(nodeKey: string) {
     if (!nodeKey) {
@@ -47,6 +50,7 @@ export class ObjectGraph<NodeValue extends Record<string, unknown>> {
 
   /**
    * @description Returns all nodes of the object graph.
+   * @since 0.1.0
    */
   public getAll() {
     return Array.from(this.nodes.values());
@@ -54,6 +58,7 @@ export class ObjectGraph<NodeValue extends Record<string, unknown>> {
 
   /**
    * @description Returns a copy of the original object graph.
+   * @since 0.1.0
    */
   public copy() {
     return new ObjectGraph(Array.from(this.nodes.values()), this.keyExtractor);
@@ -61,6 +66,7 @@ export class ObjectGraph<NodeValue extends Record<string, unknown>> {
 
   /**
    * @description Adds a node to the object graph.
+   * @since 0.1.0
    */
   public add(nodeValue: NodeValue) {
     if (!nodeValue) {
@@ -75,6 +81,7 @@ export class ObjectGraph<NodeValue extends Record<string, unknown>> {
 
   /**
    * @description Returns a copy of the original object graph with a received node added.
+   * @since 0.1.0
    */
   public toAdded(nodeValue: NodeValue) {
     const copiedObjectGraph = this.copy();
@@ -84,6 +91,7 @@ export class ObjectGraph<NodeValue extends Record<string, unknown>> {
 
   /**
    * @description Updates a node in the object graph.
+   * @since 0.1.0
    */
   public update(nodeValue: NodeValue) {
     if (!nodeValue) {
@@ -98,6 +106,7 @@ export class ObjectGraph<NodeValue extends Record<string, unknown>> {
 
   /**
    * @description Returns a copy of the original object graph with a received node updated.
+   * @since 0.1.0
    */
   public toUpdated(nodeValue: NodeValue) {
     const copiedObjectGraph = this.copy();
@@ -107,6 +116,7 @@ export class ObjectGraph<NodeValue extends Record<string, unknown>> {
 
   /**
    * @description Removes a node from the object graph.
+   * @since 0.1.0
    */
   public remove(nodeKey: string) {
     if (!nodeKey) {
@@ -123,6 +133,7 @@ export class ObjectGraph<NodeValue extends Record<string, unknown>> {
 
   /**
    * @description Returns a copy of the original object graph with a received node removed.
+   * @since 0.1.0
    */
   public toRemoved(nodeKey: string) {
     const copiedObjectGraph = this.copy();
@@ -132,6 +143,7 @@ export class ObjectGraph<NodeValue extends Record<string, unknown>> {
 
   /**
    * @description Returns all values of the provided property.
+   * @since 0.1.0
    */
   public valuesOf(propertyKey: keyof NodeValue) {
     if (!propertyKey) {
@@ -149,6 +161,7 @@ export class ObjectGraph<NodeValue extends Record<string, unknown>> {
 
   /**
    * @description Returns all nodes that match with the provided shape.
+   * @since 0.1.0
    */
   public match(shape: Partial<Record<keyof NodeValue, Array<unknown>>>) {
     if (!shape) {
