@@ -23,6 +23,14 @@ export class ObjectGraph<NodeValue extends Record<string, unknown>> {
   }
 
   /**
+   * @description Returns the keys of the object graph.
+   * @since 0.1.0
+   */
+  public keys() {
+    return this.nodes.keys();
+  }
+
+  /**
    * @description Returns the length of the object graph.
    * @since 0.1.0
    */
