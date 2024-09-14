@@ -1,12 +1,12 @@
-import { expect, describe, test, vi } from "vitest";
+import { describe, expect, expectTypeOf, test, vi } from "vitest";
 
 import { ObjectGraph } from "../src/object-graph";
 import {
-  shirtsMock,
-  extraShirtsMock,
-  type Shirt,
   type Color,
   type Size,
+  type Shirt,
+  shirtsMock,
+  extraShirtsMock,
 } from "../mocks/object-graph.mock";
 
 describe("length", () => {
@@ -23,21 +23,25 @@ describe("length", () => {
 });
 
 describe("keys()", () => {
-  test("get the keys of the object graph", () => {
+  test("get an iterator object that contains the keys of the object graph", () => {
     const shirtsObjectGraph = new ObjectGraph<Shirt>(shirtsMock, (shirt) => shirt.sku);
 
-    const shirtsObjectGraphKeys = Array.from(shirtsObjectGraph.keys());
+    const shirtsObjectGraphKeysIterator = shirtsObjectGraph.keys();
+    const shirtsObjectGraphKeys = Array.from(shirtsObjectGraphKeysIterator);
 
+    expectTypeOf(shirtsObjectGraphKeysIterator[Symbol.iterator]).toBeFunction();
     expect(shirtsObjectGraphKeys).toEqual(["1", "2", "3", "4", "5", "6", "7", "8"]);
   });
 });
 
 describe("values()", () => {
-  test("get the values of the object graph", () => {
+  test("get an iterator object that contains the values of the object graph", () => {
     const shirtsObjectGraph = new ObjectGraph<Shirt>(shirtsMock, (shirt) => shirt.sku);
 
-    const shirtsObjectGraphValues = Array.from(shirtsObjectGraph.values());
+    const shirtsObjectGraphValuesIterator = shirtsObjectGraph.values();
+    const shirtsObjectGraphValues = Array.from(shirtsObjectGraphValuesIterator);
 
+    expectTypeOf(shirtsObjectGraphValuesIterator[Symbol.iterator]).toBeFunction();
     expect(shirtsObjectGraphValues).toHaveLength(8);
     expect(shirtsObjectGraphValues[0]).toStrictEqual(shirtsMock[0]);
   });
