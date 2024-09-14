@@ -16,6 +16,14 @@ Returns an instance of ObjectGraph.
 
 Returns the length of the object graph.
 
+## keys()
+
+Returns the keys of the object graph.
+
+## values()
+
+Returns the values of the object graph.
+
 ## get()
 
 Returns a node of the object graph.
@@ -25,10 +33,6 @@ Returns a node of the object graph.
 | Name | Type | Default | Description |
 | --- | --- | --- | --- |
 | nodeKey | `string` | - | __Required.__ The key of the node to return from the object graph. |
-
-## getAll()
-
-Returns all nodes of the object graph.
 
 ## copy()
 
