@@ -9,6 +9,14 @@ import {
   type Size,
 } from "../mocks/object-graph.mock";
 
+describe("keys", () => {
+  test("get the keys of the object graph", () => {
+    const shirtsObjectGraph = new ObjectGraph<Shirt>(shirtsMock, (shirt) => shirt.sku);
+
+    expect(Array.from(shirtsObjectGraph.keys())).toEqual(["1", "2", "3", "4", "5", "6", "7", "8"]);
+  });
+});
+
 describe("length", () => {
   test("get the length of the object graph", () => {
     const shirtToAdd: Shirt = { sku: "9", color: "orange", size: "small" };
