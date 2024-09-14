@@ -9,14 +9,6 @@ import {
   type Size,
 } from "../mocks/object-graph.mock";
 
-describe("keys", () => {
-  test("get the keys of the object graph", () => {
-    const shirtsObjectGraph = new ObjectGraph<Shirt>(shirtsMock, (shirt) => shirt.sku);
-
-    expect(Array.from(shirtsObjectGraph.keys())).toEqual(["1", "2", "3", "4", "5", "6", "7", "8"]);
-  });
-});
-
 describe("length", () => {
   test("get the length of the object graph", () => {
     const shirtToAdd: Shirt = { sku: "9", color: "orange", size: "small" };
@@ -27,6 +19,27 @@ describe("length", () => {
     shirtsObjectGraph.add(shirtToAdd);
 
     expect(shirtsObjectGraph.length).toBe(9);
+  });
+});
+
+describe("keys()", () => {
+  test("get the keys of the object graph", () => {
+    const shirtsObjectGraph = new ObjectGraph<Shirt>(shirtsMock, (shirt) => shirt.sku);
+
+    const shirtsObjectGraphKeys = Array.from(shirtsObjectGraph.keys());
+
+    expect(shirtsObjectGraphKeys).toEqual(["1", "2", "3", "4", "5", "6", "7", "8"]);
+  });
+});
+
+describe("values()", () => {
+  test("get the values of the object graph", () => {
+    const shirtsObjectGraph = new ObjectGraph<Shirt>(shirtsMock, (shirt) => shirt.sku);
+
+    const shirtsObjectGraphValues = Array.from(shirtsObjectGraph.values());
+
+    expect(shirtsObjectGraphValues).toHaveLength(8);
+    expect(shirtsObjectGraphValues[0]).toStrictEqual(shirtsMock[0]);
   });
 });
 
@@ -48,17 +61,6 @@ describe("get()", () => {
 
     expect(returnedNode?.color).toBe(shirtsMock[0].color);
     expect(returnedNode?.size).toBe(shirtsMock[0].size);
-  });
-});
-
-describe("getAll()", () => {
-  test("get all nodes of the object graph", () => {
-    const shirtsObjectGraph = new ObjectGraph<Shirt>(shirtsMock, (shirt) => shirt.sku);
-
-    const returnedShirtsObjectGraph = shirtsObjectGraph.getAll();
-
-    expect(shirtsMock.length).toBe(returnedShirtsObjectGraph.length);
-    expect(shirtsMock[0]).toEqual(returnedShirtsObjectGraph[0]);
   });
 });
 

@@ -23,6 +23,14 @@ export class ObjectGraph<NodeValue extends Record<string, unknown>> {
   }
 
   /**
+   * @description Returns the length of the object graph.
+   * @since 0.1.0
+   */
+  public get length() {
+    return this.nodes.size;
+  }
+
+  /**
    * @description Returns the keys of the object graph.
    * @since 0.1.0
    */
@@ -31,11 +39,11 @@ export class ObjectGraph<NodeValue extends Record<string, unknown>> {
   }
 
   /**
-   * @description Returns the length of the object graph.
+   * @description Returns the values of the object graph.
    * @since 0.1.0
    */
-  public get length() {
-    return this.nodes.size;
+  public values() {
+    return this.nodes.values();
   }
 
   /**
@@ -54,14 +62,6 @@ export class ObjectGraph<NodeValue extends Record<string, unknown>> {
       console.error("A node with this key does not exist in the object graph");
     }
     return nodeValue;
-  }
-
-  /**
-   * @description Returns all nodes of the object graph.
-   * @since 0.1.0
-   */
-  public getAll() {
-    return Array.from(this.nodes.values());
   }
 
   /**
