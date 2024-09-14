@@ -31,7 +31,7 @@ export class ObjectGraph<NodeValue extends Record<string, unknown>> {
   }
 
   /**
-   * @description Returns the keys of the object graph.
+   * @description Returns an iterator object that contains the keys of the object graph.
    * @since 0.1.0
    */
   public keys() {
@@ -39,7 +39,7 @@ export class ObjectGraph<NodeValue extends Record<string, unknown>> {
   }
 
   /**
-   * @description Returns the values of the object graph.
+   * @description Returns an iterator object that contains the values of the object graph.
    * @since 0.1.0
    */
   public values() {

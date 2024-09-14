@@ -18,11 +18,11 @@ Returns the length of the object graph.
 
 ## keys()
 
-Returns the keys of the object graph.
+Returns an iterator object that contains the keys of the object graph.
 
 ## values()
 
-Returns the values of the object graph.
+Returns an iterator object that contains the values of the object graph.
 
 ## get()
 
