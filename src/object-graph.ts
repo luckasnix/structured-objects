@@ -185,6 +185,6 @@ export class ObjectGraph<NodeValue extends Record<string, unknown>> {
         matchedNodes.push(nodeValue);
       }
     }
-    return Array.from(matchedNodes);
+    return matchedNodes;
   }
 }
