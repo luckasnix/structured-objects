@@ -30,7 +30,9 @@ jobs:
         run: npm run lint:check
       - name: Test
         run: npm run test
-      - name: Publish package
+      - name: Build
+        run: npm run build
+      - name: Publish
         if: github.event_name == 'push' && github.ref == 'refs/heads/main'
         run: npx semantic-release
         env:
