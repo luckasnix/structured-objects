@@ -6,7 +6,6 @@ const viteConfig = defineConfig({
   build: {
     lib: {
       entry: resolve(__dirname, "src/index.ts"),
-      name: "StructuredObjects",
       formats: ["es"],
       fileName: "index",
     },
@@ -14,7 +13,6 @@ const viteConfig = defineConfig({
   plugins: [
     dts({
       include: ["src"],
-      exclude: ["src/**/*.(test|mock).ts"],
       rollupTypes: true,
     }),
   ],
