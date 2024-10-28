@@ -16,6 +16,12 @@ Yarn:
 yarn add @kasnix/structured-objects
 ```
 
+pnpm:
+
+```bash
+pnpm add @kasnix/structured-objects
+```
+
 Deno:
 
 ```bash
