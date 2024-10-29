@@ -31,16 +31,16 @@
     "prepare": "husky"
   },
   "devDependencies": {
-    "@biomejs/biome": "1.9.0",
-    "@commitlint/cli": "19.4.1",
-    "@commitlint/config-conventional": "19.4.1",
+    "@biomejs/biome": "1.9.4",
+    "@commitlint/cli": "19.5.0",
+    "@commitlint/config-conventional": "19.5.0",
     "@types/node": "20.16.10",
-    "husky": "9.1.4",
-    "semantic-release": "24.1.2",
+    "husky": "9.1.6",
+    "semantic-release": "24.2.0",
     "typescript": "5.5.4",
-    "vite": "5.4.6",
-    "vite-plugin-dts": "4.2.1",
-    "vitest": "2.1.1"
+    "vite": "5.4.10",
+    "vite-plugin-dts": "4.3.0",
+    "vitest": "2.1.4"
   },
   "publishConfig": {
     "access": "public"
