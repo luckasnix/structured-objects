@@ -26,7 +26,7 @@ export class ObjectGraph<NodeValue extends Record<string, unknown>> {
    * @description Returns the length of the object graph.
    * @since 1.0.0
    */
-  public get length() {
+  public get length(): number {
     return this.nodes.size;
   }
 
@@ -34,7 +34,7 @@ export class ObjectGraph<NodeValue extends Record<string, unknown>> {
    * @description Returns an iterator object that contains the keys of the object graph.
    * @since 1.0.0
    */
-  public keys() {
+  public keys(): IterableIterator<string> {
     return this.nodes.keys();
   }
 
@@ -42,7 +42,7 @@ export class ObjectGraph<NodeValue extends Record<string, unknown>> {
    * @description Returns an iterator object that contains the values of the object graph.
    * @since 1.0.0
    */
-  public values() {
+  public values(): IterableIterator<NodeValue> {
     return this.nodes.values();
   }
 
@@ -50,7 +50,7 @@ export class ObjectGraph<NodeValue extends Record<string, unknown>> {
    * @description Returns a node of the object graph.
    * @since 1.0.0
    */
-  public get(nodeKey: string) {
+  public get(nodeKey: string): NodeValue | undefined {
     if (!nodeKey) {
       throw new Error("Provide a value for the 'nodeKey' parameter");
     }
@@ -68,7 +68,7 @@ export class ObjectGraph<NodeValue extends Record<string, unknown>> {
    * @description Returns a copy of the original object graph.
    * @since 1.0.0
    */
-  public copy() {
+  public copy(): ObjectGraph<NodeValue> {
     return new ObjectGraph(Array.from(this.nodes.values()), this.keyExtractor);
   }
 
@@ -76,7 +76,7 @@ export class ObjectGraph<NodeValue extends Record<string, unknown>> {
    * @description Adds a node to the object graph.
    * @since 1.0.0
    */
-  public add(nodeValue: NodeValue) {
+  public add(nodeValue: NodeValue): void {
     if (!nodeValue) {
       throw new Error("Provide a value for the 'nodeValue' parameter");
     }
@@ -91,7 +91,7 @@ export class ObjectGraph<NodeValue extends Record<string, unknown>> {
    * @description Returns a copy of the original object graph with a received node added.
    * @since 1.0.0
    */
-  public toAdded(nodeValue: NodeValue) {
+  public toAdded(nodeValue: NodeValue): ObjectGraph<NodeValue> {
     const copiedObjectGraph = this.copy();
     copiedObjectGraph.add(nodeValue);
     return copiedObjectGraph;
@@ -101,7 +101,7 @@ export class ObjectGraph<NodeValue extends Record<string, unknown>> {
    * @description Updates a node in the object graph.
    * @since 1.0.0
    */
-  public update(nodeValue: NodeValue) {
+  public update(nodeValue: NodeValue): void {
     if (!nodeValue) {
       throw new Error("Provide a value for the 'nodeValue' parameter");
     }
@@ -116,7 +116,7 @@ export class ObjectGraph<NodeValue extends Record<string, unknown>> {
    * @description Returns a copy of the original object graph with a received node updated.
    * @since 1.0.0
    */
-  public toUpdated(nodeValue: NodeValue) {
+  public toUpdated(nodeValue: NodeValue): ObjectGraph<NodeValue> {
     const copiedObjectGraph = this.copy();
     copiedObjectGraph.update(nodeValue);
     return copiedObjectGraph;
@@ -126,7 +126,7 @@ export class ObjectGraph<NodeValue extends Record<string, unknown>> {
    * @description Removes a node from the object graph.
    * @since 1.0.0
    */
-  public remove(nodeKey: string) {
+  public remove(nodeKey: string): void {
     if (!nodeKey) {
       throw new Error("Provide a value for the 'nodeKey' parameter");
     }
@@ -143,7 +143,7 @@ export class ObjectGraph<NodeValue extends Record<string, unknown>> {
    * @description Returns a copy of the original object graph with a received node removed.
    * @since 1.0.0
    */
-  public toRemoved(nodeKey: string) {
+  public toRemoved(nodeKey: string): ObjectGraph<NodeValue> {
     const copiedObjectGraph = this.copy();
     copiedObjectGraph.remove(nodeKey);
     return copiedObjectGraph;
@@ -153,16 +153,16 @@ export class ObjectGraph<NodeValue extends Record<string, unknown>> {
    * @description Returns all values of the provided property.
    * @since 1.0.0
    */
-  public valuesOf(propertyKey: keyof NodeValue) {
+  public valuesOf(propertyKey: keyof NodeValue): Array<NodeValue[keyof NodeValue]> {
     if (!propertyKey) {
       throw new Error("Provide a value for the 'propertyKey' parameter");
     }
     if (typeof propertyKey !== "string") {
       throw new TypeError("The parameter 'propertyKey' must be a string");
     }
-    const propertyValues = new Set();
+    const propertyValues: Set<NodeValue[keyof NodeValue]> = new Set();
     for (const [_, nodeValue] of this.nodes) {
-      propertyValues.add(nodeValue[propertyKey]);
+      propertyValues.add(nodeValue[propertyKey as keyof NodeValue]);
     }
     return Array.from(propertyValues);
   }
@@ -171,7 +171,7 @@ export class ObjectGraph<NodeValue extends Record<string, unknown>> {
    * @description Returns all nodes that match with the provided shape.
    * @since 1.0.0
    */
-  public match(shape: Partial<Record<keyof NodeValue, Array<unknown>>>) {
+  public match(shape: Partial<Record<keyof NodeValue, Array<unknown>>>): Array<NodeValue> {
     if (!shape) {
       throw new Error("Provide a value for the 'shape' parameter");
     }
