@@ -34,6 +34,6 @@ Bun:
 bun add @kasnix/structured-objects
 ```
 
-## Resources
+## Documentation
 
 - [Object Graph](./docs/object-graph.doc.md)
