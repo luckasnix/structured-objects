@@ -9,11 +9,16 @@ const viteConfig = defineConfig({
       formats: ["es"],
       fileName: "index",
     },
+    rollupOptions: {
+      output: {
+        preserveModules: true,
+        entryFileNames: "[name].js",
+      },
+    },
   },
   plugins: [
     dts({
       include: ["src"],
-      rollupTypes: true,
     }),
   ],
 });
