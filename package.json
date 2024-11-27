@@ -1,6 +1,6 @@
 {
   "name": "@kasnix/structured-objects",
-  "version": "1.0.3",
+  "version": "1.1.0",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/luckasnix/structured-objects.git"
@@ -11,6 +11,11 @@
       "types": "./dist/index.d.ts",
       "import": "./dist/index.js",
       "default": "./dist/index.js"
+    },
+    "./object-graph": {
+      "types": "./dist/object-graph.d.ts",
+      "import": "./dist/object-graph.js",
+      "default": "./dist/object-graph.js"
     }
   },
   "files": [
@@ -23,6 +28,9 @@
     "graph"
   ],
   "license": "MIT",
+  "publishConfig": {
+    "access": "public"
+  },
   "scripts": {
     "build": "tsc && vite build",
     "test": "vitest",
@@ -45,8 +53,5 @@
     "vite": "5.4.10",
     "vite-plugin-dts": "4.3.0",
     "vitest": "2.1.4"
-  },
-  "publishConfig": {
-    "access": "public"
   }
 }
