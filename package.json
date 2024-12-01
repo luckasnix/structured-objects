@@ -31,6 +31,9 @@
   "publishConfig": {
     "access": "public"
   },
+  "engines": {
+    "node": ">=20.0.0"
+  },
   "scripts": {
     "build": "tsc && vite build",
     "test": "vitest",
@@ -46,10 +49,10 @@
     "@biomejs/biome": "1.9.4",
     "@commitlint/cli": "19.5.0",
     "@commitlint/config-conventional": "19.5.0",
-    "@types/node": "20.16.10",
+    "@types/node": "20.0.0",
     "husky": "9.1.6",
     "semantic-release": "24.2.0",
-    "typescript": "5.5.4",
+    "typescript": "5.0.4",
     "vite": "5.4.10",
     "vite-plugin-dts": "4.3.0",
     "vitest": "2.1.4"
