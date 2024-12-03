@@ -10,7 +10,7 @@ import {
 } from "../mocks/object-graph.mock";
 
 describe("length", () => {
-  test("get the length of the object graph", () => {
+  test("gets the length of the object graph", () => {
     const shirtToAdd: Shirt = { sku: "9", color: "orange", size: "small" };
     const shirtsObjectGraph = new ObjectGraph<Shirt>(shirtsMock, (shirt) => shirt.sku);
 
@@ -23,7 +23,7 @@ describe("length", () => {
 });
 
 describe("keys()", () => {
-  test("get an iterator object that contains the keys of the object graph", () => {
+  test("gets an iterator object that contains the keys of the object graph", () => {
     const shirtsObjectGraph = new ObjectGraph<Shirt>(shirtsMock, (shirt) => shirt.sku);
 
     const shirtsObjectGraphKeysIterator = shirtsObjectGraph.keys();
@@ -35,7 +35,7 @@ describe("keys()", () => {
 });
 
 describe("values()", () => {
-  test("get an iterator object that contains the values of the object graph", () => {
+  test("gets an iterator object that contains the values of the object graph", () => {
     const shirtsObjectGraph = new ObjectGraph<Shirt>(shirtsMock, (shirt) => shirt.sku);
 
     const shirtsObjectGraphValuesIterator = shirtsObjectGraph.values();
@@ -58,7 +58,7 @@ describe("get()", () => {
     expect(returnedNode).toBeUndefined();
   });
 
-  test("get a node of the object graph", () => {
+  test("gets a node of the object graph", () => {
     const shirtsObjectGraph = new ObjectGraph<Shirt>(shirtsMock, (shirt) => shirt.sku);
 
     const returnedNode = shirtsObjectGraph.get(shirtsMock[0].sku);
@@ -69,7 +69,7 @@ describe("get()", () => {
 });
 
 describe("copy()", () => {
-  test("get a copy of the original object graph", () => {
+  test("gets a copy of the original object graph", () => {
     const shirtsObjectGraph = new ObjectGraph<Shirt>(shirtsMock, (shirt) => shirt.sku);
 
     const copiedShirtsObjectGraph = shirtsObjectGraph.copy();
@@ -98,7 +98,7 @@ describe("add()", () => {
 });
 
 describe("toAdded()", () => {
-  test("get a copy of the original object graph with a received node added", () => {
+  test("gets a copy of the original object graph with a received node added", () => {
     const consoleErrorSpy = vi.spyOn(console, "error");
     const shirtsObjectGraph = new ObjectGraph<Shirt>([], (shirt) => shirt.sku);
 
@@ -142,7 +142,7 @@ describe("update()", () => {
 });
 
 describe("toUpdated()", () => {
-  test("get a copy of the original object graph with a received node updated", () => {
+  test("gets a copy of the original object graph with a received node updated", () => {
     const shirtToUpdate: Shirt = { sku: "1", color: "red", size: "large" };
     const shirtsObjectGraph = new ObjectGraph<Shirt>(shirtsMock, (shirt) => shirt.sku);
 
@@ -185,7 +185,7 @@ describe("remove()", () => {
 });
 
 describe("toRemoved()", () => {
-  test("get a copy of the original object graph with a received node removed", () => {
+  test("gets a copy of the original object graph with a received node removed", () => {
     const consoleErrorSpy = vi.spyOn(console, "error");
     const shirtsObjectGraph = new ObjectGraph<Shirt>(shirtsMock, (shirt) => shirt.sku);
 
@@ -207,7 +207,7 @@ describe("toRemoved()", () => {
 });
 
 describe("valuesOf()", () => {
-  test("get all values of the provided property", () => {
+  test("gets all values of the provided property", () => {
     const shirtsObjectGraph = new ObjectGraph<Shirt>(shirtsMock, (shirt) => shirt.sku);
 
     const sizePropertyValues = shirtsObjectGraph.valuesOf("size");
@@ -219,7 +219,7 @@ describe("valuesOf()", () => {
 });
 
 describe("match()", () => {
-  test("get all nodes that match with the provided shape", () => {
+  test("gets all nodes that match with the provided shape", () => {
     const colorsToMatch: Color[] = ["red", "blue"];
     const sizesToMatch: Size[] = ["small", "medium"];
     const shirtsObjectGraph = new ObjectGraph<Shirt>(shirtsMock, (shirt) => shirt.sku);
