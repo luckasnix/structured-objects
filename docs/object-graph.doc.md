@@ -20,6 +20,10 @@ Returns an instance of ObjectGraph.
 
 Returns the length of the object graph.
 
+### size
+
+Returns the size of the object graph.
+
 ## Instance Methods
 
 ### keys()

@@ -22,6 +22,19 @@ describe("length", () => {
   });
 });
 
+describe("size", () => {
+  test("gets the size of the object graph", () => {
+    const shirtToAdd: Shirt = { sku: "9", color: "orange", size: "small" };
+    const shirtsObjectGraph = new ObjectGraph<Shirt>(shirtsMock, (shirt) => shirt.sku);
+
+    expect(shirtsObjectGraph.size).toBe(8);
+
+    shirtsObjectGraph.add(shirtToAdd);
+
+    expect(shirtsObjectGraph.size).toBe(9);
+  });
+});
+
 describe("keys()", () => {
   test("gets an iterator object that contains the keys of the object graph", () => {
     const shirtsObjectGraph = new ObjectGraph<Shirt>(shirtsMock, (shirt) => shirt.sku);
@@ -104,8 +117,8 @@ describe("toAdded()", () => {
 
     const copiedShirtsObjectGraph = shirtsObjectGraph.toAdded(shirtsMock[0]);
 
-    expect(shirtsObjectGraph.length).toBe(0);
-    expect(copiedShirtsObjectGraph.length).toBe(1);
+    expect(shirtsObjectGraph.size).toBe(0);
+    expect(copiedShirtsObjectGraph.size).toBe(1);
 
     const returnedNodeFromCopy = copiedShirtsObjectGraph.get("1");
 
@@ -191,8 +204,8 @@ describe("toRemoved()", () => {
 
     const copiedShirtsObjectGraph = shirtsObjectGraph.toRemoved("1");
 
-    expect(shirtsObjectGraph.length).toBe(8);
-    expect(copiedShirtsObjectGraph.length).toBe(7);
+    expect(shirtsObjectGraph.size).toBe(8);
+    expect(copiedShirtsObjectGraph.size).toBe(7);
 
     const returnedNodeFromOriginal = shirtsObjectGraph.get("1");
 
