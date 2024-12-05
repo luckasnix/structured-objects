@@ -25,8 +25,17 @@ export class ObjectGraph<NodeValue extends Record<string, unknown>> {
   /**
    * @description Returns the length of the object graph.
    * @since 1.0.0
+   * @deprecated Since version 1.2.0. Will be removed in version 2.0.0. Use "size" instead.
    */
   public get length(): number {
+    return this.nodes.size;
+  }
+
+  /**
+   * @description Returns the size of the object graph.
+   * @since 1.2.0
+   */
+  public get size(): number {
     return this.nodes.size;
   }
 
