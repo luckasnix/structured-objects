@@ -18,15 +18,8 @@
       "default": "./dist/object-graph.js"
     }
   },
-  "files": [
-    "dist"
-  ],
-  "keywords": [
-    "javascript",
-    "typescript",
-    "data structures",
-    "graph"
-  ],
+  "files": ["dist"],
+  "keywords": ["javascript", "typescript", "data structures", "graph"],
   "license": "MIT",
   "publishConfig": {
     "access": "public"

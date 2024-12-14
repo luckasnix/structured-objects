@@ -1,0 +1,10 @@
+{
+  "editor.formatOnSave": true,
+  "[json][typescript]": {
+    "editor.defaultFormatter": "biomejs.biome"
+  },
+  "files.associations": {
+    ".releaserc": "json",
+    "LICENSE": "plaintext"
+  }
+}
