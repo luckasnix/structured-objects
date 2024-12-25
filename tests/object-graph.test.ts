@@ -1,13 +1,12 @@
 import { describe, expect, expectTypeOf, test, vi } from "vitest";
-
-import { ObjectGraph } from "../src/object-graph";
 import {
   type Color,
-  type Size,
   type Shirt,
-  shirtsMock,
+  type Size,
   extraShirtsMock,
+  shirtsMock,
 } from "../mocks/object-graph.mock";
+import { ObjectGraph } from "../src/object-graph";
 
 describe("length", () => {
   test("gets the length of the object graph", () => {

@@ -4,7 +4,7 @@
     "ignore": [".husky/**", "dist/**", "node_modules/**"]
   },
   "organizeImports": {
-    "enabled": false
+    "enabled": true
   },
   "linter": {
     "enabled": true,

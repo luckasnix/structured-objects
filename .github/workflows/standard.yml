@@ -24,10 +24,8 @@ jobs:
         run: npm ci
       - name: Check types
         run: npm run type:check
-      - name: Check format
-        run: npm run format:check
-      - name: Check lint
-        run: npm run lint:check
+      - name: Check format, lint and imports
+        run: npm run check
       - name: Test
         run: npm run test
       - name: Build

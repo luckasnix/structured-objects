@@ -32,9 +32,11 @@
     "test": "vitest",
     "test:watch": "vitest watch",
     "type:check": "tsc -p ./tsconfig.json --noEmit",
-    "format:check": "biome format .",
+    "check": "biome check .",
+    "check:write": "biome check --write .",
+    "format": "biome format --write .",
     "format:write": "biome format --write .",
-    "lint:check": "biome lint .",
+    "lint": "biome lint .",
     "lint:write": "biome lint --write .",
     "prepare": "husky"
   },
