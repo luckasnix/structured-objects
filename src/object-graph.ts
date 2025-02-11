@@ -162,16 +162,18 @@ export class ObjectGraph<NodeValue extends Record<string, unknown>> {
    * @description Returns all values of the provided property.
    * @since 1.0.0
    */
-  public valuesOf(propertyKey: keyof NodeValue): Array<NodeValue[keyof NodeValue]> {
-    if (!propertyKey) {
-      throw new Error("Provide a value for the 'propertyKey' parameter");
+  public valuesOf<NodeValueKey extends keyof NodeValue>(
+    nodeValueKey: NodeValueKey,
+  ): Array<NodeValue[NodeValueKey]> {
+    if (!nodeValueKey) {
+      throw new Error("Provide a value for the 'nodeValueKey' parameter");
     }
-    if (typeof propertyKey !== "string") {
-      throw new TypeError("The parameter 'propertyKey' must be a string");
+    if (typeof nodeValueKey !== "string") {
+      throw new TypeError("The parameter 'nodeValueKey' must be a string");
     }
-    const propertyValues: Set<NodeValue[keyof NodeValue]> = new Set();
+    const propertyValues: Set<NodeValue[NodeValueKey]> = new Set();
     for (const [_, nodeValue] of this.nodes) {
-      propertyValues.add(nodeValue[propertyKey as keyof NodeValue]);
+      propertyValues.add(nodeValue[nodeValueKey as NodeValueKey]);
     }
     return Array.from(propertyValues);
   }
