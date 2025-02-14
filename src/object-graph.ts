@@ -190,6 +190,9 @@ export class ObjectGraph<NodeValue extends Record<string, unknown>> {
     for (const [_, nodeValue] of this.nodes) {
       const shapeEntries = Object.entries(shape) as Array<[keyof NodeValue, Array<unknown>]>;
       const hasMatched = shapeEntries.every((shapeEntry) => {
+        if (shapeEntry[1] === undefined) {
+          return true;
+        }
         return shapeEntry[1].includes(nodeValue[shapeEntry[0]]);
       });
       if (hasMatched) {

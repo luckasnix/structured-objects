@@ -247,4 +247,27 @@ describe("match()", () => {
       expect(matchedShirt.size).oneOf(sizesToMatch);
     }
   });
+
+  test("gets matched nodes ignoring undefined value in the shape", () => {
+    const colorsToMatch: Color[] = ["yellow", "green"];
+    const shirtsObjectGraph = new ObjectGraph<Shirt>(shirtsMock, (shirt) => shirt.sku);
+
+    const matchedShirts = shirtsObjectGraph.match({
+      color: colorsToMatch,
+      size: undefined,
+    });
+
+    expect(matchedShirts).toHaveLength(3);
+    for (const matchedShirt of matchedShirts) {
+      expect(matchedShirt.color).oneOf(colorsToMatch);
+    }
+  });
+
+  test("gets all nodes for an empty shape", () => {
+    const shirtsObjectGraph = new ObjectGraph<Shirt>(shirtsMock, (shirt) => shirt.sku);
+
+    const matchedShirts = shirtsObjectGraph.match({});
+
+    expect(matchedShirts).toHaveLength(8);
+  });
 });
