@@ -48,6 +48,16 @@ Returns a node of the object graph.
 
 Returns a copy of the original object graph.
 
+### subgraph()
+
+Returns a subgraph of the original object graph.
+
+#### Parameters
+
+| Name | Type | Default | Description |
+| --- | --- | --- | --- |
+| nodeKeys | `Array<string>` | - | __Required.__ The array of keys of the nodes to add to the object subgraph. |
+
 ### add()
 
 Adds a node to the object graph.

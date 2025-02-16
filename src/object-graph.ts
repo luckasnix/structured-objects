@@ -82,6 +82,20 @@ export class ObjectGraph<NodeValue extends Record<string, unknown>> {
   }
 
   /**
+   * @description Returns a subgraph of the original object graph.
+   * @since 1.3.0
+   */
+  public subgraph(nodeKeys: Array<string>): ObjectGraph<NodeValue> {
+    const subgraph = new ObjectGraph([], this.keyExtractor);
+    for (const [nodeKey, nodeValue] of this.nodes) {
+      if (nodeKeys.includes(nodeKey)) {
+        subgraph.add(nodeValue);
+      }
+    }
+    return subgraph;
+  }
+
+  /**
    * @description Adds a node to the object graph.
    * @since 1.0.0
    */
