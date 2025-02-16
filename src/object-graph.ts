@@ -86,6 +86,15 @@ export class ObjectGraph<NodeValue extends Record<string, unknown>> {
    * @since 1.3.0
    */
   public subgraph(nodeKeys: Array<string>): ObjectGraph<NodeValue> {
+    if (!nodeKeys) {
+      throw new Error("Provide a value for the 'nodeKeys' parameter");
+    }
+    if (!Array.isArray(nodeKeys)) {
+      throw new TypeError("The parameter 'nodeKeys' must be an array");
+    }
+    if (nodeKeys.length === 0) {
+      throw new Error("The parameter 'nodeKeys' must contain at least one item");
+    }
     const subgraph = new ObjectGraph([], this.keyExtractor);
     for (const [nodeKey, nodeValue] of this.nodes) {
       if (nodeKeys.includes(nodeKey)) {
