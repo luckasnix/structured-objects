@@ -90,6 +90,16 @@ describe("copy()", () => {
   });
 });
 
+describe("subgraph()", () => {
+  test("gets a subgraph of the original object graph", () => {
+    const shirtsObjectGraph = new ObjectGraph<Shirt>(shirtsMock, (shirt) => shirt.sku);
+    const shirtsObjectSubgraph = shirtsObjectGraph.subgraph(["1", "2", "3", "4"]);
+
+    expect(shirtsObjectGraph).toHaveLength(8);
+    expect(shirtsObjectSubgraph).toHaveLength(4);
+  });
+});
+
 describe("add()", () => {
   test("logs an error when a node with the same key already exists in the object graph", () => {
     const consoleErrorSpy = vi.spyOn(console, "error");
