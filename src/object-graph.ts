@@ -182,11 +182,12 @@ export class ObjectGraph<NodeValue extends Record<string, unknown>> {
   }
 
   /**
-   * @description Returns all values of the provided property.
+   * @description Returns a list of unique values for a specified property across selected nodes in the object graph. If no selection is made, it operates on the entire graph.
    * @since 1.0.0
    */
   public valuesOf<NodeValueKey extends keyof NodeValue>(
     nodeValueKey: NodeValueKey,
+    nodeKeys?: Array<string>,
   ): Array<NodeValue[NodeValueKey]> {
     if (!nodeValueKey) {
       throw new Error("Provide a value for the 'nodeValueKey' parameter");
@@ -195,7 +196,8 @@ export class ObjectGraph<NodeValue extends Record<string, unknown>> {
       throw new TypeError("The parameter 'nodeValueKey' must be a string");
     }
     const propertyValues: Set<NodeValue[NodeValueKey]> = new Set();
-    for (const [_, nodeValue] of this.nodes) {
+    const graphNodes = nodeKeys ? this.subgraph(nodeKeys).nodes : this.nodes;
+    for (const [_, nodeValue] of graphNodes) {
       propertyValues.add(nodeValue[nodeValueKey as NodeValueKey]);
     }
     return Array.from(propertyValues);

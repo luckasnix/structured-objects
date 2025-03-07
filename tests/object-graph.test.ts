@@ -238,6 +238,16 @@ describe("valuesOf()", () => {
     expect(sizePropertyValues).toContain("medium");
     expect(sizePropertyValues).toContain("large");
   });
+
+  test("gets all values of the provided property from selected nodes", () => {
+    const shirtsObjectGraph = new ObjectGraph<Shirt>(shirtsMock, (shirt) => shirt.sku);
+
+    const sizePropertyValues = shirtsObjectGraph.valuesOf("size", ["1", "2", "3", "4"]);
+
+    expect(sizePropertyValues).toContain("small");
+    expect(sizePropertyValues).toContain("medium");
+    expect(sizePropertyValues).not.toContain("large");
+  });
 });
 
 describe("match()", () => {
