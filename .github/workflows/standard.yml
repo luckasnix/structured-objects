@@ -27,7 +27,7 @@ jobs:
       - name: Check format, lint and imports
         run: npm run check
       - name: Test
-        run: npm run test
+        run: npm run test:coverage
       - name: Build
         run: npm run build
       - name: Publish
