@@ -120,13 +120,14 @@ Returns a copy of the original object graph with a received node removed.
 
 ### valuesOf()
 
-Returns all values of the provided property.
+Returns a list of unique values for a specified property across selected nodes in the object graph. If no selection is made, it operates on the entire graph.
 
 #### Parameters
 
 | Name | Type | Default | Description |
 | --- | --- | --- | --- |
 | propertyKey | `keyof NodeValue` | - | __Required.__ The property key of the node values to return from the object graph. |
+| nodeKeys | `Array<string>` | - | The array of nodes keys to define the selected nodes. |
 
 ### match()
 
