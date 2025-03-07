@@ -4,6 +4,9 @@ const vitestConfig = defineConfig({
   test: {
     watch: false,
     restoreMocks: true,
+    coverage: {
+      include: ["src/object-*.ts"],
+    },
   },
 });
 
