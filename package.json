@@ -1,11 +1,12 @@
 {
   "name": "@kasnix/structured-objects",
-  "version": "1.4.0",
+  "version": "1.4.1",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/luckasnix/structured-objects.git"
   },
   "type": "module",
+  "types": "./dist/index.d.ts",
   "exports": {
     ".": {
       "types": "./dist/index.d.ts",
