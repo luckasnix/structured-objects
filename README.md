@@ -34,6 +34,21 @@ Bun:
 bun add @kasnix/structured-objects
 ```
 
+## Usage
+
+```typescript
+import { ObjectGraph } from "@kasnix/structured-objects/object-graph";
+
+type DataItem = {
+  id: string;
+  // ...
+};
+
+const dataList: Array<DataItem> = [/* ... */];
+
+const dataGraph = new ObjectGraph<DataItem>(dataList, (dataItem) => dataItem.id);
+```
+
 ## Documentation
 
 - [Object Graph](./docs/object-graph.doc.md)
