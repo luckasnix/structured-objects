@@ -124,9 +124,9 @@ export class ObjectGraph<NodeValue extends Record<string, unknown>> {
    * @since 1.0.0
    */
   public toAdded(nodeValue: NodeValue): ObjectGraph<NodeValue> {
-    const copiedObjectGraph = this.copy();
-    copiedObjectGraph.add(nodeValue);
-    return copiedObjectGraph;
+    const copiedGraph = this.copy();
+    copiedGraph.add(nodeValue);
+    return copiedGraph;
   }
 
   /**
@@ -149,9 +149,9 @@ export class ObjectGraph<NodeValue extends Record<string, unknown>> {
    * @since 1.0.0
    */
   public toUpdated(nodeValue: NodeValue): ObjectGraph<NodeValue> {
-    const copiedObjectGraph = this.copy();
-    copiedObjectGraph.update(nodeValue);
-    return copiedObjectGraph;
+    const copiedGraph = this.copy();
+    copiedGraph.update(nodeValue);
+    return copiedGraph;
   }
 
   /**
@@ -176,9 +176,9 @@ export class ObjectGraph<NodeValue extends Record<string, unknown>> {
    * @since 1.0.0
    */
   public toRemoved(nodeKey: string): ObjectGraph<NodeValue> {
-    const copiedObjectGraph = this.copy();
-    copiedObjectGraph.remove(nodeKey);
-    return copiedObjectGraph;
+    const copiedGraph = this.copy();
+    copiedGraph.remove(nodeKey);
+    return copiedGraph;
   }
 
   /**
