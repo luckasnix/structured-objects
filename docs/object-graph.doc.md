@@ -137,4 +137,4 @@ Returns all nodes that match with the provided shape.
 
 | Name | Type | Default | Description |
 | --- | --- | --- | --- |
-| shape | `Partial<Record<keyof NodeValue, Array<unknown>>>` | - | __Required.__ The shape of the nodes to return from the object graph. |
+| shape | `Partial<Record<keyof NodeValue, unknown>>` | - | __Required.__ The shape of the nodes to return from the object graph. |

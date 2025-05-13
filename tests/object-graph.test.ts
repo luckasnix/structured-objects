@@ -236,7 +236,7 @@ describe("valuesOf()", () => {
 });
 
 describe("match()", () => {
-  test("gets all nodes that match with the provided shape", () => {
+  test("gets all nodes that match the provided shape", () => {
     const colorsToMatch: Color[] = ["red", "blue"];
     const sizesToMatch: Size[] = ["small", "medium"];
     const shirtsGraph = new ObjectGraph<Shirt>(shirtsMock, (shirt) => shirt.sku);
@@ -251,6 +251,19 @@ describe("match()", () => {
       expect(matchedShirt.color).oneOf(colorsToMatch);
       expect(matchedShirt.size).oneOf(sizesToMatch);
     }
+  });
+
+  test("gets all nodes that match a shape with non-array values", () => {
+    const shirtsGraph = new ObjectGraph<Shirt>(shirtsMock, (shirt) => shirt.sku);
+
+    const matchedShirts = shirtsGraph.match({
+      color: "red",
+      size: "small",
+    });
+
+    expect(matchedShirts).toHaveLength(1);
+    expect(matchedShirts[0].color).toBe("red");
+    expect(matchedShirts[0].size).toBe("small");
   });
 
   test("gets matched nodes ignoring undefined value in the shape", () => {
