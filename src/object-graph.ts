@@ -204,18 +204,23 @@ export class ObjectGraph<NodeValue extends Record<string, unknown>> {
    * @description Returns all nodes that match with the provided shape.
    * @since 1.0.0
    */
-  public match(shape: Partial<Record<keyof NodeValue, Array<unknown>>>): Array<NodeValue> {
+  public match(shape: Partial<Record<keyof NodeValue, unknown>>): Array<NodeValue> {
     if (!shape) {
       throw new Error("Provide a value for the 'shape' parameter");
     }
     const matchedNodes: Array<NodeValue> = new Array();
     for (const [_, nodeValue] of this.nodes) {
-      const shapeEntries = Object.entries(shape) as Array<[keyof NodeValue, Array<unknown>]>;
+      const shapeEntries = Object.entries(shape) as Array<[keyof NodeValue, unknown]>;
       const hasMatched = shapeEntries.every((shapeEntry) => {
-        if (shapeEntry[1] === undefined) {
+        const shapePropKey = shapeEntry[0];
+        const shapePropValue = shapeEntry[1];
+        if (shapePropValue === undefined) {
           return true;
         }
-        return shapeEntry[1].includes(nodeValue[shapeEntry[0]]);
+        const shapePropValueArray: Array<unknown> = Array.isArray(shapePropValue)
+          ? shapePropValue
+          : [shapePropValue];
+        return shapePropValueArray.includes(nodeValue[shapePropKey]);
       });
       if (hasMatched) {
         matchedNodes.push(nodeValue);
