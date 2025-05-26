@@ -1,6 +1,6 @@
 # Structured Objects
 
-Structured Objects is lightweight and powerful library for handling object in JavaScript/TypeScript in different types of data structures.
+Structured Objects is a lightweight and powerful library for manipulating objects in JavaScript and TypeScript across different types of data structures.
 
 ## Installation
 
