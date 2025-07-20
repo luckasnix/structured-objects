@@ -25,7 +25,7 @@ jobs:
       - name: Check types
         run: npm run type:check
       - name: Check format, lint and imports
-        run: npm run check
+        run: npm run check-all
       - name: Test
         run: npm run test:coverage
       - name: Build
