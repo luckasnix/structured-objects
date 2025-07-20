@@ -1,18 +1,18 @@
 {
-	"branches": [
-		{
-			"name": "main"
-		}
-	],
-	"plugins": [
-		[
-			"@semantic-release/commit-analyzer",
-			{
-				"preset": "angular"
-			}
-		],
-		"@semantic-release/release-notes-generator",
-		"@semantic-release/github",
-		"@semantic-release/npm"
-	]
+  "branches": [
+    {
+      "name": "main"
+    }
+  ],
+  "plugins": [
+    [
+      "@semantic-release/commit-analyzer",
+      {
+        "preset": "angular"
+      }
+    ],
+    "@semantic-release/release-notes-generator",
+    "@semantic-release/github",
+    "@semantic-release/npm"
+  ]
 }
