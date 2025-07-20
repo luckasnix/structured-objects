@@ -10,6 +10,7 @@
 			".vscode/**",
 			"mocks/**",
 			"src/**",
+			"tests/**",
 			".releaserc.json",
 			"biome.json",
 			"commitlint.config.ts",
