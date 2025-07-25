@@ -49,6 +49,7 @@
     "lint:write": "biome lint --write",
     "check-all": "biome check",
     "write-all": "biome check --write",
+    "check-ci": "biome ci",
     "prepare": "husky"
   },
   "devDependencies": {
