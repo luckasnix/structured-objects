@@ -2,7 +2,7 @@
   "name": "@kasnix/structured-objects",
   "description": "A lightweight and powerful library for manipulating objects in JavaScript and TypeScript across different types of data structures.",
   "author": "Kasnix",
-  "version": "1.5.2",
+  "version": "1.6.0",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/luckasnix/structured-objects.git"

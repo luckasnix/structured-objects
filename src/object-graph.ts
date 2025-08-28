@@ -210,6 +210,25 @@ export class ObjectGraph<NodeValue extends Record<string, unknown>> {
   }
 
   /**
+   * @description Returns all values grouped by property.
+   * @since 1.6.0
+   */
+  public valuesBy(): Record<string, Array<unknown>> {
+    const valuesByProperty: Record<string, Array<unknown>> = {};
+    for (const [_, nodeValue] of this.nodes) {
+      for (const [nodeValueKey, nodeValueValue] of Object.entries(nodeValue)) {
+        if (!valuesByProperty[nodeValueKey]) {
+          valuesByProperty[nodeValueKey] = [];
+        }
+        if (!valuesByProperty[nodeValueKey].includes(nodeValueValue)) {
+          valuesByProperty[nodeValueKey].push(nodeValueValue);
+        }
+      }
+    }
+    return valuesByProperty;
+  }
+
+  /**
    * @description Returns all nodes that match with the provided shape.
    * @since 1.0.0
    */
