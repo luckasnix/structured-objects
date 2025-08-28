@@ -291,6 +291,23 @@ describe("valuesOf()", () => {
   });
 });
 
+describe("valuesBy()", () => {
+  test("gets all values grouped by property", () => {
+    const shirtsGraph = new ObjectGraph<Shirt>(
+      shirtsMock,
+      (shirt) => shirt.sku,
+    );
+
+    const valuesByProperty = shirtsGraph.valuesBy();
+
+    expect(valuesByProperty).toEqual({
+      sku: ["1", "2", "3", "4", "5", "6", "7", "8"],
+      color: ["red", "yellow", "green", "blue"],
+      size: ["small", "medium", "large"],
+    });
+  });
+});
+
 describe("match()", () => {
   test("gets all nodes that match the provided shape", () => {
     const colorsToMatch: Color[] = ["red", "blue"];

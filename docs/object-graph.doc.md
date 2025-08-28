@@ -129,6 +129,10 @@ Returns a list of unique values for a specified property across selected nodes i
 | propertyKey | `keyof NodeValue` | - | __Required.__ The property key of the node values to return from the object graph. |
 | nodeKeys | `Array<string>` | - | The array of nodes keys to define the selected nodes. |
 
+### valuesBy()
+
+Returns all values grouped by property.
+
 ### match()
 
 Returns all nodes that match with the provided shape.
