@@ -37,7 +37,7 @@ bun add @kasnix/structured-objects
 ## Usage
 
 ```typescript
-import { ObjectGraph } from "@kasnix/structured-objects/object-graph";
+import { ObjectGraph } from "@kasnix/structured-objects/graph";
 
 type DataItem = {
   id: string;
