@@ -26,7 +26,7 @@ export class ObjectGraph<NodeValue extends Record<string, unknown>> {
   }
 
   /**
-   * @description Returns the length of the object graph.
+   * @description Returns the length of the graph.
    * @since 1.0.0
    * @deprecated Since version 1.2.0. Will be removed in version 2.0.0. Use "size" instead.
    */
@@ -35,7 +35,7 @@ export class ObjectGraph<NodeValue extends Record<string, unknown>> {
   }
 
   /**
-   * @description Returns the size of the object graph.
+   * @description Returns the size of the graph.
    * @since 1.2.0
    */
   public get size(): number {
@@ -43,7 +43,7 @@ export class ObjectGraph<NodeValue extends Record<string, unknown>> {
   }
 
   /**
-   * @description Returns an iterator object that contains the keys of the object graph.
+   * @description Returns an iterator that contains the keys of the graph.
    * @since 1.0.0
    */
   public keys(): IterableIterator<string> {
@@ -51,7 +51,7 @@ export class ObjectGraph<NodeValue extends Record<string, unknown>> {
   }
 
   /**
-   * @description Returns an iterator object that contains the values of the object graph.
+   * @description Returns an iterator that contains the values of the graph.
    * @since 1.0.0
    */
   public values(): IterableIterator<NodeValue> {
@@ -59,7 +59,7 @@ export class ObjectGraph<NodeValue extends Record<string, unknown>> {
   }
 
   /**
-   * @description Returns a node of the object graph.
+   * @description Returns a node of the graph.
    * @since 1.0.0
    */
   public get(nodeKey: string): NodeValue | undefined {
@@ -71,13 +71,13 @@ export class ObjectGraph<NodeValue extends Record<string, unknown>> {
     }
     const nodeValue = this.nodes.get(nodeKey);
     if (!nodeValue) {
-      console.error("A node with this key does not exist in the object graph");
+      console.error("A node with this key does not exist in the graph");
     }
     return nodeValue;
   }
 
   /**
-   * @description Returns a copy of the original object graph.
+   * @description Returns a copy of the original graph.
    * @since 1.0.0
    */
   public copy(): ObjectGraph<NodeValue> {
@@ -85,7 +85,7 @@ export class ObjectGraph<NodeValue extends Record<string, unknown>> {
   }
 
   /**
-   * @description Returns a subgraph of the original object graph.
+   * @description Returns a subgraph of the original graph.
    * @since 1.3.0
    */
   public subgraph(nodeKeys: Array<string>): ObjectGraph<NodeValue> {
@@ -110,7 +110,7 @@ export class ObjectGraph<NodeValue extends Record<string, unknown>> {
   }
 
   /**
-   * @description Adds a node to the object graph.
+   * @description Adds a node to the graph.
    * @since 1.0.0
    */
   public add(nodeValue: NodeValue): void {
@@ -119,15 +119,13 @@ export class ObjectGraph<NodeValue extends Record<string, unknown>> {
     }
     const nodeKey = this.keyExtractor(nodeValue);
     if (this.nodes.get(nodeKey)) {
-      throw new Error(
-        "A node with the same key already exists in the object graph",
-      );
+      throw new Error("A node with the same key already exists in the graph");
     }
     this.nodes.set(nodeKey, nodeValue);
   }
 
   /**
-   * @description Returns a copy of the original object graph with a received node added.
+   * @description Returns a copy of the original graph with a received node added.
    * @since 1.0.0
    */
   public toAdded(nodeValue: NodeValue): ObjectGraph<NodeValue> {
@@ -137,7 +135,7 @@ export class ObjectGraph<NodeValue extends Record<string, unknown>> {
   }
 
   /**
-   * @description Updates a node in the object graph.
+   * @description Updates a node in the graph.
    * @since 1.0.0
    */
   public update(nodeValue: NodeValue): void {
@@ -147,14 +145,14 @@ export class ObjectGraph<NodeValue extends Record<string, unknown>> {
     const nodeKey = this.keyExtractor(nodeValue);
     if (!this.nodes.get(nodeKey)) {
       throw new Error(
-        "A node with the provided key does not exist in the object graph",
+        "A node with the provided key does not exist in the graph",
       );
     }
     this.nodes.set(nodeKey, nodeValue);
   }
 
   /**
-   * @description Returns a copy of the original object graph with a received node updated.
+   * @description Returns a copy of the original graph with a received node updated.
    * @since 1.0.0
    */
   public toUpdated(nodeValue: NodeValue): ObjectGraph<NodeValue> {
@@ -164,7 +162,7 @@ export class ObjectGraph<NodeValue extends Record<string, unknown>> {
   }
 
   /**
-   * @description Removes a node from the object graph.
+   * @description Removes a node from the graph.
    * @since 1.0.0
    */
   public remove(nodeKey: string): void {
@@ -178,7 +176,7 @@ export class ObjectGraph<NodeValue extends Record<string, unknown>> {
   }
 
   /**
-   * @description Returns a copy of the original object graph with a received node removed.
+   * @description Returns a copy of the original graph with a received node removed.
    * @since 1.0.0
    */
   public toRemoved(nodeKey: string): ObjectGraph<NodeValue> {
@@ -188,7 +186,7 @@ export class ObjectGraph<NodeValue extends Record<string, unknown>> {
   }
 
   /**
-   * @description Returns a list of unique values for a specified property across selected nodes in the object graph. If no selection is made, it operates on the entire graph.
+   * @description Returns a list of unique values for a specified property across selected nodes in the graph. If no selection is made, it operates on the entire graph.
    * @since 1.0.0
    */
   public valuesOf<NodeValueKey extends keyof NodeValue>(

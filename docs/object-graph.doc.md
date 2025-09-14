@@ -18,39 +18,39 @@ Returns an instance of ObjectGraph.
 
 ### length
 
-Returns the length of the object graph.
+Returns the length of the graph.
 
 ### size
 
-Returns the size of the object graph.
+Returns the size of the graph.
 
 ## Instance Methods
 
 ### keys()
 
-Returns an iterator object that contains the keys of the object graph.
+Returns an iterator that contains the keys of the graph.
 
 ### values()
 
-Returns an iterator object that contains the values of the object graph.
+Returns an iterator that contains the values of the graph.
 
 ### get()
 
-Returns a node of the object graph.
+Returns a node of the graph.
 
 #### Parameters
 
 | Name | Type | Default | Description |
 | --- | --- | --- | --- |
-| nodeKey | `string` | - | __Required.__ The key of the node to return from the object graph. |
+| nodeKey | `string` | - | __Required.__ The key of the node to return from the graph. |
 
 ### copy()
 
-Returns a copy of the original object graph.
+Returns a copy of the original graph.
 
 ### subgraph()
 
-Returns a subgraph of the original object graph.
+Returns a subgraph of the original graph.
 
 #### Parameters
 
@@ -60,73 +60,73 @@ Returns a subgraph of the original object graph.
 
 ### add()
 
-Adds a node to the object graph.
+Adds a node to the graph.
 
 #### Parameters
 
 | Name | Type | Default | Description |
 | --- | --- | --- | --- |
-| nodeValue | `NodeValue` | - | __Required.__ The value of the node to add to the object graph. |
+| nodeValue | `NodeValue` | - | __Required.__ The value of the node to add to the graph. |
 
 ### toAdded()
 
-Returns a copy of the original object graph with a received node added.
+Returns a copy of the original graph with a received node added.
 
 #### Parameters
 
 | Name | Type | Default | Description |
 | --- | --- | --- | --- |
-| nodeValue | `NodeValue` | - | __Required.__ The value of the node to add to the object graph. |
+| nodeValue | `NodeValue` | - | __Required.__ The value of the node to add to the graph. |
 
 ### update()
 
-Updates a node in the object graph.
+Updates a node in the graph.
 
 #### Parameters
 
 | Name | Type | Default | Description |
 | --- | --- | --- | --- |
-| nodeValue | `NodeValue` | - | __Required.__ The value of the node to update in the object graph. |
+| nodeValue | `NodeValue` | - | __Required.__ The value of the node to update in the graph. |
 
 ### toUpdated()
 
-Returns a copy of the original object graph with a received node updated.
+Returns a copy of the original graph with a received node updated.
 
 #### Parameters
 
 | Name | Type | Default | Description |
 | --- | --- | --- | --- |
-| nodeValue | `NodeValue` | - | __Required.__ The value of the node to update in the object graph. |
+| nodeValue | `NodeValue` | - | __Required.__ The value of the node to update in the graph. |
 
 ### remove()
 
-Removes a node from the object graph.
+Removes a node from the graph.
 
 #### Parameters
 
 | Name | Type | Default | Description |
 | --- | --- | --- | --- |
-| nodeKey | `string` | - | __Required.__ The key of the node to remove from the object graph. |
+| nodeKey | `string` | - | __Required.__ The key of the node to remove from the graph. |
 
 ### toRemoved()
 
-Returns a copy of the original object graph with a received node removed.
+Returns a copy of the original graph with a received node removed.
 
 #### Parameters
 
 | Name | Type | Default | Description |
 | --- | --- | --- | --- |
-| nodeKey | `string` | - | __Required.__ The key of the node to remove from the object graph. |
+| nodeKey | `string` | - | __Required.__ The key of the node to remove from the graph. |
 
 ### valuesOf()
 
-Returns a list of unique values for a specified property across selected nodes in the object graph. If no selection is made, it operates on the entire graph.
+Returns a list of unique values for a specified property across selected nodes in the graph. If no selection is made, it operates on the entire graph.
 
 #### Parameters
 
 | Name | Type | Default | Description |
 | --- | --- | --- | --- |
-| propertyKey | `keyof NodeValue` | - | __Required.__ The property key of the node values to return from the object graph. |
+| propertyKey | `keyof NodeValue` | - | __Required.__ The property key of the node values to return from the graph. |
 | nodeKeys | `Array<string>` | - | The array of nodes keys to define the selected nodes. |
 
 ### valuesBy()
@@ -141,4 +141,4 @@ Returns all nodes that match with the provided shape.
 
 | Name | Type | Default | Description |
 | --- | --- | --- | --- |
-| shape | `Partial<Record<keyof NodeValue, unknown>>` | - | __Required.__ The shape of the nodes to return from the object graph. |
+| shape | `Partial<Record<keyof NodeValue, unknown>>` | - | __Required.__ The shape of the nodes to return from the graph. |

@@ -1,4 +1,5 @@
 import { describe, expect, expectTypeOf, test, vi } from "vitest";
+
 import {
   type Color,
   extraShirtsMock,
@@ -9,7 +10,7 @@ import {
 import { ObjectGraph } from "../src/object-graph";
 
 describe("length", () => {
-  test("gets the length of the object graph", () => {
+  test("gets the length of the graph", () => {
     const shirtToAdd: Shirt = { sku: "9", color: "orange", size: "small" };
     const shirtsGraph = new ObjectGraph<Shirt>(
       shirtsMock,
@@ -25,7 +26,7 @@ describe("length", () => {
 });
 
 describe("size", () => {
-  test("gets the size of the object graph", () => {
+  test("gets the size of the graph", () => {
     const shirtToAdd: Shirt = { sku: "9", color: "orange", size: "small" };
     const shirtsGraph = new ObjectGraph<Shirt>(
       shirtsMock,
@@ -41,7 +42,7 @@ describe("size", () => {
 });
 
 describe("keys()", () => {
-  test("gets an iterator object that contains the keys of the object graph", () => {
+  test("gets an iterator that contains the keys of the graph", () => {
     const shirtsGraph = new ObjectGraph<Shirt>(
       shirtsMock,
       (shirt) => shirt.sku,
@@ -56,7 +57,7 @@ describe("keys()", () => {
 });
 
 describe("values()", () => {
-  test("gets an iterator object that contains the values of the object graph", () => {
+  test("gets an iterator that contains the values of the graph", () => {
     const shirtsGraph = new ObjectGraph<Shirt>(
       shirtsMock,
       (shirt) => shirt.sku,
@@ -72,7 +73,7 @@ describe("values()", () => {
 });
 
 describe("get()", () => {
-  test("logs an error when there is no node with the provided key in the object graph", () => {
+  test("logs an error when there is no node with the provided key in the graph", () => {
     const consoleErrorSpy = vi.spyOn(console, "error");
     const shirtsGraph = new ObjectGraph<Shirt>(
       shirtsMock,
@@ -85,7 +86,7 @@ describe("get()", () => {
     expect(returnedNode).toBeUndefined();
   });
 
-  test("gets a node of the object graph", () => {
+  test("gets a node of the graph", () => {
     const shirtsGraph = new ObjectGraph<Shirt>(
       shirtsMock,
       (shirt) => shirt.sku,
@@ -99,7 +100,7 @@ describe("get()", () => {
 });
 
 describe("copy()", () => {
-  test("gets a copy of the original object graph", () => {
+  test("gets a copy of the original graph", () => {
     const shirtsGraph = new ObjectGraph<Shirt>(
       shirtsMock,
       (shirt) => shirt.sku,
@@ -112,7 +113,7 @@ describe("copy()", () => {
 });
 
 describe("subgraph()", () => {
-  test("gets a subgraph of the original object graph", () => {
+  test("gets a subgraph of the original graph", () => {
     const shirtsGraph = new ObjectGraph<Shirt>(
       shirtsMock,
       (shirt) => shirt.sku,
@@ -125,7 +126,7 @@ describe("subgraph()", () => {
 });
 
 describe("add()", () => {
-  test("throws an error when a node with the same key already exists in the object graph", () => {
+  test("throws an error when a node with the same key already exists in the graph", () => {
     const shirtToAdd: Shirt = { sku: "1", color: "purple", size: "large" };
     const shirtsGraph = new ObjectGraph<Shirt>(
       shirtsMock,
@@ -139,7 +140,7 @@ describe("add()", () => {
     expect(shirtsGraph.get("1")?.color).toBe("red");
   });
 
-  test("adds a node to the object graph", () => {
+  test("adds a node to the graph", () => {
     const shirtsGraph = new ObjectGraph<Shirt>([], (shirt) => shirt.sku);
 
     shirtsGraph.add(shirtsMock[0]);
@@ -149,7 +150,7 @@ describe("add()", () => {
 });
 
 describe("toAdded()", () => {
-  test("gets a copy of the original object graph with a received node added", () => {
+  test("gets a copy of the original graph with a received node added", () => {
     const consoleErrorSpy = vi.spyOn(console, "error");
     const shirtsGraph = new ObjectGraph<Shirt>(
       shirtsMock,
@@ -174,7 +175,7 @@ describe("toAdded()", () => {
 });
 
 describe("update()", () => {
-  test("throws an error when there is no node with the same key in the object graph", () => {
+  test("throws an error when there is no node with the same key in the graph", () => {
     const shirtToUpdate: Shirt = { sku: "9", color: "orange", size: "small" };
     const shirtsGraph = new ObjectGraph<Shirt>(
       shirtsMock,
@@ -188,7 +189,7 @@ describe("update()", () => {
     expect(shirtsGraph.size).toBe(8);
   });
 
-  test("updates a node in the object graph", () => {
+  test("updates a node in the graph", () => {
     const shirtToUpdate: Shirt = { sku: "1", color: "red", size: "large" };
     const shirtsGraph = new ObjectGraph<Shirt>(
       shirtsMock,
@@ -204,7 +205,7 @@ describe("update()", () => {
 });
 
 describe("toUpdated()", () => {
-  test("gets a copy of the original object graph with a received node updated", () => {
+  test("gets a copy of the original graph with a received node updated", () => {
     const shirtToUpdate: Shirt = { sku: "1", color: "red", size: "large" };
     const shirtsGraph = new ObjectGraph<Shirt>(
       shirtsMock,
@@ -219,7 +220,7 @@ describe("toUpdated()", () => {
 });
 
 describe("remove()", () => {
-  test("removes a node from the object graph", () => {
+  test("removes a node from the graph", () => {
     const shirtsGraph = new ObjectGraph<Shirt>(
       shirtsMock,
       (shirt) => shirt.sku,
@@ -234,7 +235,7 @@ describe("remove()", () => {
 });
 
 describe("toRemoved()", () => {
-  test("gets a copy of the original object graph with a received node removed", () => {
+  test("gets a copy of the original graph with a received node removed", () => {
     const consoleErrorSpy = vi.spyOn(console, "error");
     const shirtsGraph = new ObjectGraph<Shirt>(
       shirtsMock,
