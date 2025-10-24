@@ -1,5 +1,4 @@
 {
-  "editor.formatOnSave": true,
   "[json]": {
     "editor.defaultFormatter": "biomejs.biome"
   },
@@ -9,6 +8,7 @@
   "editor.codeActionsOnSave": {
     "source.organizeImports.biome": "explicit"
   },
+  "editor.formatOnSave": true,
   "files.associations": {
     "LICENSE": "plaintext"
   }
