@@ -104,8 +104,8 @@ describe("subgraph()", () => {
     );
     const shirtsSubgraph = shirtsGraph.subgraph(["1", "2", "3", "4"]);
 
-    expect(shirtsGraph).toHaveLength(8);
-    expect(shirtsSubgraph).toHaveLength(4);
+    expect(shirtsGraph.size).toBe(8);
+    expect(shirtsSubgraph.size).toBe(4);
   });
 });
 
