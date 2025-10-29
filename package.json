@@ -15,15 +15,10 @@
       "import": "./dist/index.js",
       "default": "./dist/index.js"
     },
-    "./graph": {
-      "types": "./dist/object-graph.d.ts",
-      "import": "./dist/object-graph.js",
-      "default": "./dist/object-graph.js"
-    },
-    "./object-graph": {
-      "types": "./dist/object-graph.d.ts",
-      "import": "./dist/object-graph.js",
-      "default": "./dist/object-graph.js"
+    "./similarity-graph": {
+      "types": "./dist/similarity-graph.d.ts",
+      "import": "./dist/similarity-graph.js",
+      "default": "./dist/similarity-graph.js"
     }
   },
   "files": [

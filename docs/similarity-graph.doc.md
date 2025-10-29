@@ -3,9 +3,9 @@
 
 ## Constructor
 
-### ObjectGraph()
+### SimilarityGraph()
 
-Returns an instance of ObjectGraph.
+Returns an instance of SimilarityGraph.
 
 #### Parameters
 

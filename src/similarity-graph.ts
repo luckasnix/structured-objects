@@ -1,9 +1,9 @@
-export class ObjectGraph<NodeValue extends Record<string, unknown>> {
+export class SimilarityGraph<NodeValue extends Record<string, unknown>> {
   private nodes: Map<string, NodeValue>;
   private keyExtractor: (nodeValue: NodeValue) => string;
 
   /**
-   * @description Returns an instance of ObjectGraph.
+   * @description Returns an instance of SimilarityGraph.
    * @since 1.0.0
    */
   constructor(
@@ -80,15 +80,18 @@ export class ObjectGraph<NodeValue extends Record<string, unknown>> {
    * @description Returns a copy of the original graph.
    * @since 1.0.0
    */
-  public copy(): ObjectGraph<NodeValue> {
-    return new ObjectGraph(Array.from(this.nodes.values()), this.keyExtractor);
+  public copy(): SimilarityGraph<NodeValue> {
+    return new SimilarityGraph(
+      Array.from(this.nodes.values()),
+      this.keyExtractor,
+    );
   }
 
   /**
    * @description Returns a subgraph of the original graph.
    * @since 1.3.0
    */
-  public subgraph(nodeKeys: Array<string>): ObjectGraph<NodeValue> {
+  public subgraph(nodeKeys: Array<string>): SimilarityGraph<NodeValue> {
     if (!nodeKeys) {
       throw new Error("Provide a value for the 'nodeKeys' parameter");
     }
@@ -100,7 +103,7 @@ export class ObjectGraph<NodeValue extends Record<string, unknown>> {
         "The parameter 'nodeKeys' must contain at least one item",
       );
     }
-    const subgraph = new ObjectGraph([], this.keyExtractor);
+    const subgraph = new SimilarityGraph([], this.keyExtractor);
     for (const [nodeKey, nodeValue] of this.nodes) {
       if (nodeKeys.includes(nodeKey)) {
         subgraph.add(nodeValue);
@@ -128,7 +131,7 @@ export class ObjectGraph<NodeValue extends Record<string, unknown>> {
    * @description Returns a copy of the original graph with a received node added.
    * @since 1.0.0
    */
-  public toAdded(nodeValue: NodeValue): ObjectGraph<NodeValue> {
+  public toAdded(nodeValue: NodeValue): SimilarityGraph<NodeValue> {
     const copiedGraph = this.copy();
     copiedGraph.add(nodeValue);
     return copiedGraph;
@@ -155,7 +158,7 @@ export class ObjectGraph<NodeValue extends Record<string, unknown>> {
    * @description Returns a copy of the original graph with a received node updated.
    * @since 1.0.0
    */
-  public toUpdated(nodeValue: NodeValue): ObjectGraph<NodeValue> {
+  public toUpdated(nodeValue: NodeValue): SimilarityGraph<NodeValue> {
     const copiedGraph = this.copy();
     copiedGraph.update(nodeValue);
     return copiedGraph;
@@ -179,7 +182,7 @@ export class ObjectGraph<NodeValue extends Record<string, unknown>> {
    * @description Returns a copy of the original graph with a received node removed.
    * @since 1.0.0
    */
-  public toRemoved(nodeKey: string): ObjectGraph<NodeValue> {
+  public toRemoved(nodeKey: string): SimilarityGraph<NodeValue> {
     const copiedGraph = this.copy();
     copiedGraph.remove(nodeKey);
     return copiedGraph;

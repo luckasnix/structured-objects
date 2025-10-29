@@ -37,7 +37,7 @@ bun add @kasnix/structured-objects
 ## Usage
 
 ```typescript
-import { ObjectGraph } from "@kasnix/structured-objects/graph";
+import { SimilarityGraph } from "@kasnix/structured-objects/similarity-graph";
 
 type DataItem = {
   id: string;
@@ -46,9 +46,9 @@ type DataItem = {
 
 const dataList: Array<DataItem> = [/* ... */];
 
-const dataGraph = new ObjectGraph<DataItem>(dataList, (dataItem) => dataItem.id);
+const dataGraph = new SimilarityGraph<DataItem>(dataList, (dataItem) => dataItem.id);
 ```
 
 ## Documentation
 
-- [Object Graph](./docs/object-graph.doc.md)
+- [SimilarityGraph](./docs/similarity-graph.doc.md)

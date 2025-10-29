@@ -1,1 +1,1 @@
-export * from "./object-graph";
+export * from "./similarity-graph";

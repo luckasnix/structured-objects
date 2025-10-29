@@ -6,13 +6,13 @@ import {
   type Shirt,
   type Size,
   shirtsMock,
-} from "../mocks/object-graph.mock";
-import { ObjectGraph } from "../src/object-graph";
+} from "../mocks/similarity-graph.mock";
+import { SimilarityGraph } from "../src/similarity-graph";
 
 describe("length", () => {
   test("gets the length of the graph", () => {
     const shirtToAdd: Shirt = { sku: "9", color: "orange", size: "small" };
-    const shirtsGraph = new ObjectGraph<Shirt>(
+    const shirtsGraph = new SimilarityGraph<Shirt>(
       shirtsMock,
       (shirt) => shirt.sku,
     );
@@ -28,7 +28,7 @@ describe("length", () => {
 describe("size", () => {
   test("gets the size of the graph", () => {
     const shirtToAdd: Shirt = { sku: "9", color: "orange", size: "small" };
-    const shirtsGraph = new ObjectGraph<Shirt>(
+    const shirtsGraph = new SimilarityGraph<Shirt>(
       shirtsMock,
       (shirt) => shirt.sku,
     );
@@ -43,7 +43,7 @@ describe("size", () => {
 
 describe("keys()", () => {
   test("gets an iterator that contains the keys of the graph", () => {
-    const shirtsGraph = new ObjectGraph<Shirt>(
+    const shirtsGraph = new SimilarityGraph<Shirt>(
       shirtsMock,
       (shirt) => shirt.sku,
     );
@@ -58,7 +58,7 @@ describe("keys()", () => {
 
 describe("values()", () => {
   test("gets an iterator that contains the values of the graph", () => {
-    const shirtsGraph = new ObjectGraph<Shirt>(
+    const shirtsGraph = new SimilarityGraph<Shirt>(
       shirtsMock,
       (shirt) => shirt.sku,
     );
@@ -75,7 +75,7 @@ describe("values()", () => {
 describe("get()", () => {
   test("logs an error when there is no node with the provided key in the graph", () => {
     const consoleErrorSpy = vi.spyOn(console, "error");
-    const shirtsGraph = new ObjectGraph<Shirt>(
+    const shirtsGraph = new SimilarityGraph<Shirt>(
       shirtsMock,
       (shirt) => shirt.sku,
     );
@@ -87,7 +87,7 @@ describe("get()", () => {
   });
 
   test("gets a node of the graph", () => {
-    const shirtsGraph = new ObjectGraph<Shirt>(
+    const shirtsGraph = new SimilarityGraph<Shirt>(
       shirtsMock,
       (shirt) => shirt.sku,
     );
@@ -101,7 +101,7 @@ describe("get()", () => {
 
 describe("copy()", () => {
   test("gets a copy of the original graph", () => {
-    const shirtsGraph = new ObjectGraph<Shirt>(
+    const shirtsGraph = new SimilarityGraph<Shirt>(
       shirtsMock,
       (shirt) => shirt.sku,
     );
@@ -114,7 +114,7 @@ describe("copy()", () => {
 
 describe("subgraph()", () => {
   test("gets a subgraph of the original graph", () => {
-    const shirtsGraph = new ObjectGraph<Shirt>(
+    const shirtsGraph = new SimilarityGraph<Shirt>(
       shirtsMock,
       (shirt) => shirt.sku,
     );
@@ -128,7 +128,7 @@ describe("subgraph()", () => {
 describe("add()", () => {
   test("throws an error when a node with the same key already exists in the graph", () => {
     const shirtToAdd: Shirt = { sku: "1", color: "purple", size: "large" };
-    const shirtsGraph = new ObjectGraph<Shirt>(
+    const shirtsGraph = new SimilarityGraph<Shirt>(
       shirtsMock,
       (shirt) => shirt.sku,
     );
@@ -141,7 +141,7 @@ describe("add()", () => {
   });
 
   test("adds a node to the graph", () => {
-    const shirtsGraph = new ObjectGraph<Shirt>([], (shirt) => shirt.sku);
+    const shirtsGraph = new SimilarityGraph<Shirt>([], (shirt) => shirt.sku);
 
     shirtsGraph.add(shirtsMock[0]);
 
@@ -152,7 +152,7 @@ describe("add()", () => {
 describe("toAdded()", () => {
   test("gets a copy of the original graph with a received node added", () => {
     const consoleErrorSpy = vi.spyOn(console, "error");
-    const shirtsGraph = new ObjectGraph<Shirt>(
+    const shirtsGraph = new SimilarityGraph<Shirt>(
       shirtsMock,
       (shirt) => shirt.sku,
     );
@@ -177,7 +177,7 @@ describe("toAdded()", () => {
 describe("update()", () => {
   test("throws an error when there is no node with the same key in the graph", () => {
     const shirtToUpdate: Shirt = { sku: "9", color: "orange", size: "small" };
-    const shirtsGraph = new ObjectGraph<Shirt>(
+    const shirtsGraph = new SimilarityGraph<Shirt>(
       shirtsMock,
       (shirt) => shirt.sku,
     );
@@ -191,7 +191,7 @@ describe("update()", () => {
 
   test("updates a node in the graph", () => {
     const shirtToUpdate: Shirt = { sku: "1", color: "red", size: "large" };
-    const shirtsGraph = new ObjectGraph<Shirt>(
+    const shirtsGraph = new SimilarityGraph<Shirt>(
       shirtsMock,
       (shirt) => shirt.sku,
     );
@@ -207,7 +207,7 @@ describe("update()", () => {
 describe("toUpdated()", () => {
   test("gets a copy of the original graph with a received node updated", () => {
     const shirtToUpdate: Shirt = { sku: "1", color: "red", size: "large" };
-    const shirtsGraph = new ObjectGraph<Shirt>(
+    const shirtsGraph = new SimilarityGraph<Shirt>(
       shirtsMock,
       (shirt) => shirt.sku,
     );
@@ -221,7 +221,7 @@ describe("toUpdated()", () => {
 
 describe("remove()", () => {
   test("removes a node from the graph", () => {
-    const shirtsGraph = new ObjectGraph<Shirt>(
+    const shirtsGraph = new SimilarityGraph<Shirt>(
       shirtsMock,
       (shirt) => shirt.sku,
     );
@@ -237,7 +237,7 @@ describe("remove()", () => {
 describe("toRemoved()", () => {
   test("gets a copy of the original graph with a received node removed", () => {
     const consoleErrorSpy = vi.spyOn(console, "error");
-    const shirtsGraph = new ObjectGraph<Shirt>(
+    const shirtsGraph = new SimilarityGraph<Shirt>(
       shirtsMock,
       (shirt) => shirt.sku,
     );
@@ -261,7 +261,7 @@ describe("toRemoved()", () => {
 
 describe("valuesOf()", () => {
   test("gets all values of the provided property", () => {
-    const shirtsGraph = new ObjectGraph<Shirt>(
+    const shirtsGraph = new SimilarityGraph<Shirt>(
       shirtsMock,
       (shirt) => shirt.sku,
     );
@@ -274,7 +274,7 @@ describe("valuesOf()", () => {
   });
 
   test("gets all values of the provided property from selected nodes", () => {
-    const shirtsGraph = new ObjectGraph<Shirt>(
+    const shirtsGraph = new SimilarityGraph<Shirt>(
       shirtsMock,
       (shirt) => shirt.sku,
     );
@@ -294,7 +294,7 @@ describe("valuesOf()", () => {
 
 describe("valuesBy()", () => {
   test("gets all values grouped by property", () => {
-    const shirtsGraph = new ObjectGraph<Shirt>(
+    const shirtsGraph = new SimilarityGraph<Shirt>(
       shirtsMock,
       (shirt) => shirt.sku,
     );
@@ -313,7 +313,7 @@ describe("match()", () => {
   test("gets all nodes that match the provided shape", () => {
     const colorsToMatch: Color[] = ["red", "blue"];
     const sizesToMatch: Size[] = ["small", "medium"];
-    const shirtsGraph = new ObjectGraph<Shirt>(
+    const shirtsGraph = new SimilarityGraph<Shirt>(
       shirtsMock,
       (shirt) => shirt.sku,
     );
@@ -331,7 +331,7 @@ describe("match()", () => {
   });
 
   test("gets all nodes that match a shape with non-array values", () => {
-    const shirtsGraph = new ObjectGraph<Shirt>(
+    const shirtsGraph = new SimilarityGraph<Shirt>(
       shirtsMock,
       (shirt) => shirt.sku,
     );
@@ -348,7 +348,7 @@ describe("match()", () => {
 
   test("gets matched nodes ignoring undefined value in the shape", () => {
     const colorsToMatch: Color[] = ["yellow", "green"];
-    const shirtsGraph = new ObjectGraph<Shirt>(
+    const shirtsGraph = new SimilarityGraph<Shirt>(
       shirtsMock,
       (shirt) => shirt.sku,
     );
@@ -365,7 +365,7 @@ describe("match()", () => {
   });
 
   test("gets all nodes for an empty shape", () => {
-    const shirtsGraph = new ObjectGraph<Shirt>(
+    const shirtsGraph = new SimilarityGraph<Shirt>(
       shirtsMock,
       (shirt) => shirt.sku,
     );
