@@ -9,22 +9,6 @@ import {
 } from "../mocks/similarity-graph.mock";
 import { SimilarityGraph } from "../src/similarity-graph";
 
-describe("length", () => {
-  test("gets the length of the graph", () => {
-    const shirtToAdd: Shirt = { sku: "9", color: "orange", size: "small" };
-    const shirtsGraph = new SimilarityGraph<Shirt>(
-      shirtsMock,
-      (shirt) => shirt.sku,
-    );
-
-    expect(shirtsGraph.length).toBe(8);
-
-    shirtsGraph.add(shirtToAdd);
-
-    expect(shirtsGraph.length).toBe(9);
-  });
-});
-
 describe("size", () => {
   test("gets the size of the graph", () => {
     const shirtToAdd: Shirt = { sku: "9", color: "orange", size: "small" };

@@ -16,10 +16,6 @@ Returns an instance of SimilarityGraph.
 
 ## Instance Properties
 
-### length
-
-Returns the length of the graph.
-
 ### size
 
 Returns the size of the graph.
