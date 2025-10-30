@@ -3,9 +3,9 @@
 
 ## Constructor
 
-### ObjectGraph()
+### SimilarityGraph()
 
-Returns an instance of ObjectGraph.
+Returns an instance of SimilarityGraph.
 
 #### Parameters
 
@@ -15,10 +15,6 @@ Returns an instance of ObjectGraph.
 | keyExtractor | `(nodeValue: NodeValue) => string` | - | __Required.__ The function to generate a key for each node. |
 
 ## Instance Properties
-
-### length
-
-Returns the length of the graph.
 
 ### size
 
