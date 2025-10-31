@@ -1,5 +1,5 @@
 <!-- markdownlint-disable-file no-duplicate-heading -->
-# Object Graph
+# Similarity Graph
 
 ## Constructor
 
