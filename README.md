@@ -52,3 +52,4 @@ const dataGraph = new SimilarityGraph<DataItem>(dataList, (dataItem) => dataItem
 ## Documentation
 
 - [SimilarityGraph](./docs/similarity-graph.doc.md)
+- [Migration Guide: v1 to v2](./docs/migration-guide-v1-to-v2.md)
