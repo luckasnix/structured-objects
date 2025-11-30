@@ -6,7 +6,7 @@ This guide will help you migrate your code from `@kasnix/structured-objects` v1 
 
 ### Node.js Version
 
-The minimum Node.js version has been updated from 20.8.1 to 22.12.0. To ensure the library continues to work correctly, make sure you are using Node.js version 22.12.0 or higher.
+The minimum Node.js version has been updated from 20.8.1 to 22.14.0. To ensure the library continues to work correctly, make sure you are using Node.js version 22.14.0 or higher.
 
 To check your version, use the following command:
 
@@ -65,7 +65,7 @@ expect(graph.size).toBe(5);
 
 ## Migration Checklist
 
-- [ ] Update Node.js to version 22.12.0 or higher
+- [ ] Update Node.js to version 22.14.0 or higher
 - [ ] Replace all references to `ObjectGraph` class with `SimilarityGraph`
 - [ ] Update import subpaths from `/graph` or `/object-graph` to `/similarity-graph`
 - [ ] Replace all uses of `.length` with `.size`
