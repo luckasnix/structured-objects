@@ -9,7 +9,7 @@ const viteConfig = defineConfig({
       formats: ["es"],
       fileName: "index",
     },
-    rollupOptions: {
+    rolldownOptions: {
       output: {
         preserveModules: true,
         entryFileNames: "[name].js",
