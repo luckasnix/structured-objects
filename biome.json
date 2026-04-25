@@ -17,7 +17,7 @@
       "commitlint.config.ts",
       "package.json",
       "tsconfig.json",
-      "vite.config.ts",
+      "tsdown.config.ts",
       "vitest.config.ts"
     ],
     "ignoreUnknown": false
