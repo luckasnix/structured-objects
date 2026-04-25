@@ -60,11 +60,7 @@ export class SimilarityGraph<NodeValue extends Record<string, unknown>> {
     if (typeof nodeKey !== "string") {
       throw new TypeError("The parameter 'nodeKey' must be a string");
     }
-    const nodeValue = this.nodes.get(nodeKey);
-    if (!nodeValue) {
-      console.error("A node with this key does not exist in the graph");
-    }
-    return nodeValue;
+    return this.nodes.get(nodeKey);
   }
 
   /**
