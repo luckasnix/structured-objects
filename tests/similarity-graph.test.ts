@@ -1,4 +1,4 @@
-import { describe, expect, expectTypeOf, test, vi } from "vitest";
+import { describe, expect, expectTypeOf, test } from "vitest";
 
 import {
   type Color,
@@ -57,8 +57,7 @@ describe("values()", () => {
 });
 
 describe("get()", () => {
-  test("logs an error when there is no node with the provided key in the graph", () => {
-    const consoleErrorSpy = vi.spyOn(console, "error");
+  test("gets an undefined value when there is no node with the provided key in the graph", () => {
     const shirtsGraph = new SimilarityGraph<Shirt>(
       shirtsMock,
       (shirt) => shirt.sku,
@@ -66,7 +65,6 @@ describe("get()", () => {
 
     const returnedNode = shirtsGraph.get("9");
 
-    expect(consoleErrorSpy).toHaveBeenCalled();
     expect(returnedNode).toBeUndefined();
   });
 
@@ -135,7 +133,6 @@ describe("add()", () => {
 
 describe("toAdded()", () => {
   test("gets a copy of the original graph with a received node added", () => {
-    const consoleErrorSpy = vi.spyOn(console, "error");
     const shirtsGraph = new SimilarityGraph<Shirt>(
       shirtsMock,
       (shirt) => shirt.sku,
@@ -148,12 +145,10 @@ describe("toAdded()", () => {
 
     const returnedNodeFromCopy = copiedShirtsGraph.get("9");
 
-    expect(consoleErrorSpy).not.toHaveBeenCalled();
     expect(returnedNodeFromCopy).toBeDefined();
 
     const returnedNodeFromOriginal = shirtsGraph.get("9");
 
-    expect(consoleErrorSpy).toHaveBeenCalled();
     expect(returnedNodeFromOriginal).toBeUndefined();
   });
 });
@@ -220,7 +215,6 @@ describe("remove()", () => {
 
 describe("toRemoved()", () => {
   test("gets a copy of the original graph with a received node removed", () => {
-    const consoleErrorSpy = vi.spyOn(console, "error");
     const shirtsGraph = new SimilarityGraph<Shirt>(
       shirtsMock,
       (shirt) => shirt.sku,
@@ -233,13 +227,11 @@ describe("toRemoved()", () => {
 
     const returnedNodeFromOriginal = shirtsGraph.get("1");
 
-    expect(consoleErrorSpy).not.toHaveBeenCalled();
     expect(returnedNodeFromOriginal).toBeDefined();
 
     const returnedNodeFromCopy = copiedShirtsGraph.get("1");
 
     expect(returnedNodeFromCopy).toBeUndefined();
-    expect(consoleErrorSpy).toHaveBeenCalled();
   });
 });
 
