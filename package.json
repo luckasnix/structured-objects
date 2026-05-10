@@ -2,7 +2,7 @@
   "name": "@kasnix/structured-objects",
   "description": "A lightweight and powerful library for manipulating objects in JavaScript and TypeScript across different types of data structures.",
   "author": "Kasnix",
-  "version": "2.0.1",
+  "version": "2.0.3",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/luckasnix/structured-objects.git"
@@ -12,14 +12,13 @@
   "exports": {
     ".": {
       "types": "./dist/index.d.ts",
-      "import": "./dist/index.js",
-      "default": "./dist/index.js"
+      "import": "./dist/index.js"
     },
     "./similarity-graph": {
       "types": "./dist/similarity-graph.d.ts",
-      "import": "./dist/similarity-graph.js",
-      "default": "./dist/similarity-graph.js"
-    }
+      "import": "./dist/similarity-graph.js"
+    },
+    "./package.json": "./package.json"
   },
   "files": [
     "dist"
