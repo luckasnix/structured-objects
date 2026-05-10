@@ -8,7 +8,6 @@
   "files": {
     "includes": [
       ".vscode/**",
-      "!!dist",
       "mocks/**",
       "src/**",
       "tests/**",

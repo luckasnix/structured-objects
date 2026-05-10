@@ -7,8 +7,6 @@ const tsdownConfig = defineConfig({
   },
   dts: true,
   fixedExtension: false,
-  format: "esm",
-  unbundle: true,
 });
 
 export default tsdownConfig;
