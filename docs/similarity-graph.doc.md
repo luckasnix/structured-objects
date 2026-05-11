@@ -1,4 +1,3 @@
-<!-- markdownlint-disable-file no-duplicate-heading -->
 # Similarity Graph
 
 ## Constructor
