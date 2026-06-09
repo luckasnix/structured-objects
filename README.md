@@ -2,7 +2,7 @@
 
 Structured Objects is a lightweight and powerful library for manipulating objects in JavaScript and TypeScript across different types of data structures.
 
-## Installation
+## 📦 Installation
 
 npm:
 
@@ -10,16 +10,16 @@ npm:
 npm i @kasnix/structured-objects
 ```
 
-Yarn:
-
-```bash
-yarn add @kasnix/structured-objects
-```
-
 pnpm:
 
 ```bash
 pnpm add @kasnix/structured-objects
+```
+
+Yarn:
+
+```bash
+yarn add @kasnix/structured-objects
 ```
 
 Deno:
@@ -34,7 +34,7 @@ Bun:
 bun add @kasnix/structured-objects
 ```
 
-## Usage
+## ⚙️ Usage
 
 ```typescript
 import { SimilarityGraph } from "@kasnix/structured-objects/similarity-graph";
@@ -49,7 +49,7 @@ const dataList: Array<DataItem> = [/* ... */];
 const dataGraph = new SimilarityGraph<DataItem>(dataList, (dataItem) => dataItem.id);
 ```
 
-## Documentation
+## 📖 Documentation
 
-- [SimilarityGraph](./docs/similarity-graph.doc.md)
+- [SimilarityGraph](./docs/similarity-graph.md)
 - [Migration Guide: v1 to v2](./docs/migration-guide-v1-to-v2.md)
