@@ -1,6 +1,6 @@
 {
   "name": "@kasnix/structured-objects",
-  "description": "A lightweight and powerful library for manipulating objects in JavaScript and TypeScript across different types of data structures.",
+  "description": "Data structures for objects.",
   "author": "Kasnix",
   "version": "2.0.3",
   "repository": {
