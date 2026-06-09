@@ -11,6 +11,9 @@
   "editor.codeActionsOnSave": {
     "source.organizeImports.biome": "explicit"
   },
+  "[markdown]": {
+    "editor.formatOnSave": false
+  },
   "editor.formatOnSave": true,
   "files.associations": {
     "LICENSE": "plaintext"
