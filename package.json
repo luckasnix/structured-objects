@@ -2,12 +2,13 @@
   "name": "@kasnix/structured-objects",
   "description": "Data structures for objects.",
   "author": "Kasnix",
-  "version": "2.0.3",
+  "version": "2.0.4",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/luckasnix/structured-objects.git"
   },
   "type": "module",
+  "sideEffects": false,
   "types": "./dist/index.d.ts",
   "exports": {
     ".": {
