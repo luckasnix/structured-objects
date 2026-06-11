@@ -1,11 +1,18 @@
 {
   "name": "@kasnix/structured-objects",
   "description": "Data structures for objects.",
-  "author": "Kasnix",
   "version": "2.0.4",
+  "homepage": "https://github.com/luckasnix/structured-objects#readme",
+  "author": {
+    "name": "Kasnix",
+    "url": "https://github.com/luckasnix"
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/luckasnix/structured-objects.git"
+  },
+  "bugs": {
+    "url": "https://github.com/luckasnix/structured-objects/issues"
   },
   "type": "module",
   "sideEffects": false,
