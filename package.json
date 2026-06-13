@@ -48,6 +48,7 @@
       "onFail": "error"
     }
   },
+  "packageManager": "pnpm@11.6.0",
   "scripts": {
     "build": "tsc && tsdown",
     "test": "vitest",
@@ -67,6 +68,7 @@
     "@biomejs/biome": "2.5.0",
     "@commitlint/cli": "21.0.2",
     "@commitlint/config-conventional": "21.0.2",
+    "@commitlint/types": "21.0.1",
     "@types/node": "24.13.2",
     "@vitest/coverage-v8": "4.1.8",
     "husky": "9.1.7",
