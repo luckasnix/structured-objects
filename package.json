@@ -48,7 +48,7 @@
       "onFail": "error"
     }
   },
-  "packageManager": "pnpm@11.6.0",
+  "packageManager": "pnpm@11.9.0",
   "scripts": {
     "build": "tsc && tsdown",
     "test": "vitest",
@@ -65,16 +65,16 @@
     "prepare": "husky"
   },
   "devDependencies": {
-    "@biomejs/biome": "2.5.0",
-    "@commitlint/cli": "21.0.2",
-    "@commitlint/config-conventional": "21.0.2",
-    "@commitlint/types": "21.0.1",
+    "@biomejs/biome": "2.5.1",
+    "@commitlint/cli": "21.2.0",
+    "@commitlint/config-conventional": "21.2.0",
+    "@commitlint/types": "21.2.0",
     "@types/node": "24.13.2",
-    "@vitest/coverage-v8": "4.1.8",
+    "@vitest/coverage-v8": "4.1.9",
     "husky": "9.1.7",
     "semantic-release": "25.0.5",
-    "tsdown": "0.22.2",
+    "tsdown": "0.22.3",
     "typescript": "5.0.4",
-    "vitest": "4.1.8"
+    "vitest": "4.1.9"
   }
 }
